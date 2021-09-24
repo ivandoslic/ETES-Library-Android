@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "971834407441",
+    "project_id": "eteslib",
+    "storage_bucket": "eteslib.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971834407441:android:2afba27be43a4e8eee8fb0",
+        "android_client_info": {
+          "package_name": "com.example.eteslibauthproto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971834407441-dei8amo3j3j2h3pbkgdb4am4ee433vp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZw8gG28jukmQ1QqyVzoVX4HsVr9jzouY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971834407441-dei8amo3j3j2h3pbkgdb4am4ee433vp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

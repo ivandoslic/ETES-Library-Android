@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    tools:context=".activities.LoginActivity">
+
+    <ImageView
+        android:id="@+id/logoOnLogin"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/logo_on_login"
+        android:src="@drawable/logo_white_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/loginGreetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/login_message"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        app:font_name="josefinSansSemiBoldItalic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoOnLogin" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailFieldLayoutLog"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginGreetings"
+        app:startIconContentDescription="Your email address"
+        app:startIconDrawable="@drawable/ic_baseline_mail_outline_24">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/emailFieldInputLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_field_placeholder" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordFieldLayoutLog"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailFieldLayoutLog"
+        app:startIconDrawable="@drawable/ic_baseline_lock_open_24">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/passwordFieldInputLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_field_placeholder"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:alpha="0.75"
+        android:text="@string/login_button_text"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:font_name="josefinSansExtraLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordFieldLayoutLog" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/doNotHaveAccLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0.75"
+        android:text="@string/don_t_have_an_account_label"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:font_name="josefinSansExtraLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/createAccountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_an_account_label"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:font_name="josefinSansSemiBoldItalic"
+        app:layout_constraintEnd_toEndOf="@+id/doNotHaveAccLabel"
+        app:layout_constraintStart_toStartOf="@+id/doNotHaveAccLabel"
+        app:layout_constraintTop_toBottomOf="@+id/doNotHaveAccLabel" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.75"
+        android:text="@string/forgot_password"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:font_name="josefinSansExtraLight"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/passwordFieldLayoutLog"
+        app:layout_constraintTop_toBottomOf="@+id/passwordFieldLayoutLog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

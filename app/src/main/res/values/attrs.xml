@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="JosefinSansTextView">
+        <attr name="font_name">
+            <enum value="1" name="josefinSansBold"/>
+            <enum value="2" name="josefinSansBoldItalic"/>
+            <enum value="3" name="josefinSansExtraLight"/>
+            <enum value="4" name="josefinSansExtraLightItalic"/>
+            <enum value="5" name="josefinSansItalic"/>
+            <enum value="6" name="josefinSansLight"/>
+            <enum value="7" name="josefinSansLightItalic"/>
+            <enum value="8" name="josefinSansMedium"/>
+            <enum value="9" name="josefinSansMediumItalic"/>
+            <enum value="10" name="josefinSansRegular"/>
+            <enum value="11" name="josefinSansSemiBold"/>
+            <enum value="12" name="josefinSansSemiBoldItalic"/>
+            <enum value="13" name="josefinSansThin"/>
+            <enum value="14" name="josefinSansThinItalic"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

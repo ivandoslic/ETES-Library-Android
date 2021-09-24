@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/register_background"
+    tools:context=".activities.RegisterActivity">
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/registerMessageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Create account"
+        android:textColor="@color/white"
+        android:textSize="42sp"
+        app:font_name="josefinSansSemiBoldItalic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameFieldLayoutReg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/registerMessageLabel"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/nameFieldInputReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your name"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailFieldLayoutReg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/nameFieldLayoutReg"
+        app:startIconContentDescription="Your email address"
+        app:startIconDrawable="@drawable/ic_baseline_mail_outline_24">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/emailFieldInputReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_field_placeholder"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordFieldLayoutReg"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@+id/emailFieldLayoutReg"
+        app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/passwordFieldInputReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_field_placeholder"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirmPasswordFieldLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="5dp"
+        app:boxStrokeWidth="2dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@+id/passwordFieldLayoutReg"
+        app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.example.eteslibauthproto.utils.ETESLibEditText
+            android:id="@+id/confirmPasswordFieldInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/termsAndConditionsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordFieldLayout">
+
+        <com.example.eteslibauthproto.utils.ETESLibCheckBox
+            android:id="@+id/termsAndConditionsCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I Agree To The "
+            android:textSize="14sp" />
+
+        <com.example.eteslibauthproto.utils.ETESLibTextView
+            android:id="@+id/termsAndConditionsBoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_amp_conditions"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:font_name="josefinSansSemiBoldItalic" />
+
+    </LinearLayout>
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.75"
+        android:text="REGISTER"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:font_name="josefinSansExtraLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/termsAndConditionsContainer" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/alreadyAnUserLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:alpha="0.75"
+        android:text="Already have an account?"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:font_name="josefinSansExtraLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/alreadyAnUserActionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login to your account"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:font_name="josefinSansSemiBoldItalic"
+        app:layout_constraintEnd_toEndOf="@+id/alreadyAnUserLabel"
+        app:layout_constraintStart_toStartOf="@+id/alreadyAnUserLabel"
+        app:layout_constraintTop_toBottomOf="@+id/alreadyAnUserLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
