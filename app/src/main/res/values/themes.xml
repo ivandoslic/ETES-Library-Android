@@ -36,4 +36,8 @@
 
         <item name="android:autofilledHighlight">@color/autofilled_color</item>
     </style>
+
+    <style name="SpinnerTheme">
+        <item name="fontFamily">@font/josefin_sans</item>
+    </style>
 </resources>

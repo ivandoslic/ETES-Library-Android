@@ -57,7 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordFieldLayoutLog"
+        android:id="@+id/editProfileNameField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_open_24">
 
         <com.example.eteslibauthproto.utils.ETESLibEditText
-            android:id="@+id/passwordFieldInputLog"
+            android:id="@+id/editProfileNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_field_placeholder"
@@ -92,7 +92,7 @@
         app:font_name="josefinSansExtraLight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldLayoutLog" />
+        app:layout_constraintTop_toBottomOf="@+id/editProfileNameField" />
 
     <com.example.eteslibauthproto.utils.ETESLibTextView
         android:id="@+id/doNotHaveAccLabel"
@@ -131,7 +131,7 @@
         app:font_name="josefinSansExtraLight"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/passwordFieldLayoutLog"
-        app:layout_constraintTop_toBottomOf="@+id/passwordFieldLayoutLog" />
+        app:layout_constraintEnd_toEndOf="@+id/editProfileNameField"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileNameField" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

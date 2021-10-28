@@ -2,8 +2,7 @@
 <resources>
     <dimen name="splash_title_text_size">35sp</dimen>
     <dimen name="button_background_radius">5dp</dimen>
-    <dimen name="profile_banner_height">275dp</dimen>
-    <dimen name="profile_margin_top">145dp</dimen> <!-- profile_margin_top should be equal to profile_pic_radius - 5 -->
+    <dimen name="profile_margin_top">100dp</dimen>
     <dimen name="profile_pic_radius">90dp</dimen>
     <dimen name="profile_pic_corner">45dp</dimen> <!-- profile_pic_corner should be half of profile_pic_radius -->
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_title_text_size">35sp</dimen>
+    <dimen name="button_background_radius">5dp</dimen>
+    <dimen name="profile_margin_top">142dp</dimen>
+    <dimen name="profile_pic_radius">100dp</dimen>
+    <dimen name="profile_pic_corner">50dp</dimen> <!-- profile_pic_corner should be half of profile_pic_radius -->
+</resources>

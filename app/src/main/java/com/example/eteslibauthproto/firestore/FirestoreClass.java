@@ -3,8 +3,10 @@ package com.example.eteslibauthproto.firestore;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 
+import com.example.eteslibauthproto.activities.EditProfileActivity;
 import com.example.eteslibauthproto.activities.LoginActivity;
 import com.example.eteslibauthproto.activities.RegisterActivity;
 import com.example.eteslibauthproto.models.User;
@@ -15,6 +17,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
 
 public class FirestoreClass {
 
@@ -73,6 +79,52 @@ public class FirestoreClass {
                         ((LoginActivity) activity).hideProgressDialog();
                     }
                     Log.e(activity.getLocalClassName(), err.getMessage());
+        });
+    }
+
+    public static void updateUserProfile(Activity a, HashMap<String, Object> userHM){
+        mFirebaseFirestore.collection(Constants.USERS).document(getCurrentUserID())
+                .update(userHM)
+                .addOnSuccessListener(task -> {
+                    if(a instanceof EditProfileActivity) {
+                        ((EditProfileActivity) a).userProfileUpdateSuccess();
+                    }
+                }).addOnFailureListener(err -> {
+                    if(a instanceof EditProfileActivity) {
+                        ((EditProfileActivity) a).hideProgressDialog();
+                    }
+
+                    Log.e(a.getLocalClassName(), "Error while updating the user details", err);
+                });
+    }
+
+    public static void uploadImageToCloud(Activity a, Uri uri) {
+        StorageReference reference = FirebaseStorage.getInstance()
+                .getReference()
+                .child(
+                        Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "." + Constants.getFileExtension(a, uri)
+                );
+
+        reference.putFile(uri).addOnSuccessListener(taskSnapshot -> {
+
+            Log.e("Firebase Image URL", taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+
+            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(uriRes -> {
+                Log.e("Downloadable Image URL", uriRes.toString());
+
+                if(a instanceof EditProfileActivity){
+                    ((EditProfileActivity) a).imageUploadSuccess(uriRes.toString());
+                }
+            });
+
+        }).addOnFailureListener(err -> {
+
+            if(a instanceof EditProfileActivity){
+                ((EditProfileActivity) a).hideProgressDialog();
+            }
+
+            Log.e(a.getLocalClassName(), err.getMessage(), err);
+
         });
     }
 }

@@ -11,4 +11,6 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="forgot_password_pressable_label">Let\'s fix that</string>
     <string name="terms_amp_conditions"><u><![CDATA[Terms & Conditions]]></u></string>
+    <string name="read_storage_perm_denied">You denied the permission for storage! You can allow it from settings.</string>
+    <string name="image_selection_failed">Something went wrong! Could not get the image!</string>
 </resources>

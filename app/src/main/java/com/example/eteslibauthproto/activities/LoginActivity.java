@@ -1,20 +1,17 @@
 package com.example.eteslibauthproto.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.example.eteslibauthproto.R;
 import com.example.eteslibauthproto.firestore.FirestoreClass;
 import com.example.eteslibauthproto.models.User;
+import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.ETESLibEditText;
 import com.example.eteslibauthproto.utils.ETESLibTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 public class LoginActivity extends BaseActivity {
 
@@ -32,7 +29,7 @@ public class LoginActivity extends BaseActivity {
         ETESLibTextView loginButton = (ETESLibTextView) findViewById(R.id.loginButton);
         ETESLibTextView forgotPassword = (ETESLibTextView) findViewById(R.id.forgotPassword);
         emailField = (ETESLibEditText) findViewById(R.id.emailFieldInputLog);
-        passwordField = (ETESLibEditText) findViewById(R.id.passwordFieldInputLog);
+        passwordField = (ETESLibEditText) findViewById(R.id.editProfileNameInput);
 
         registerTV.setOnClickListener(v -> {
             Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -85,10 +82,15 @@ public class LoginActivity extends BaseActivity {
     public void userLoggedInSuccess(User u) {
         hideProgressDialog();
 
-        Log.i("Name: ", (String) u.getName());
-        Log.i("Email: ", (String) u.getEmail());
+        Intent i;
 
-        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+        if(u.isProfileCompleted()) {
+            i = new Intent(LoginActivity.this, MainActivity.class);
+        } else {
+            i = new Intent(LoginActivity.this, EditProfileActivity.class);
+            i.putExtra(Constants.EXTRA_USER_DETAILS, u);
+        }
+
         startActivity(i);
         finish();
     }
