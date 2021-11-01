@@ -30,6 +30,9 @@ public final class Constants {
 
     public static void showImageChooser(Activity a) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // TODO: Force user to crop image to needed resolution for profile/banner/etc.
+
         a.startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST_CODE);
     }
 

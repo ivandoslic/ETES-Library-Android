@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EditProfileActivity">
+    tools:context=".ui.activities.EditProfileActivity">
 
     <ImageView
-        android:id="@+id/profileBanner"
+        android:id="@+id/profileEditBanner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/profile_banner_height"
         android:scaleType="centerCrop"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/backgroundWhitePanel"
+        android:id="@+id/backgroundEditProfWhitePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="4dp"
@@ -36,11 +36,11 @@
         android:src="@drawable/ic_baseline_add_a_photo_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/usersProfileImageCard"
-        app:layout_constraintTop_toTopOf="@+id/usersProfileImageCard" />
+        app:layout_constraintStart_toEndOf="@+id/usersEditProfileImageCard"
+        app:layout_constraintTop_toTopOf="@+id/usersEditProfileImageCard" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/usersProfileImageCard"
+        android:id="@+id/usersEditProfileImageCard"
         android:layout_width="@dimen/profile_pic_radius"
         android:layout_height="@dimen/profile_pic_radius"
         android:layout_marginTop="@dimen/profile_margin_top"
@@ -52,10 +52,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/usersProfileImageImage"
+            android:id="@+id/usersEditProfProfileImageImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/profile" />
+            android:src="@drawable/profile_placeholder_image" />
 
         <ImageButton
             android:id="@+id/addNewProfileButton"
@@ -74,10 +74,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_arrow_back_ios_24"
         android:backgroundTint="@color/charcoal"
-        app:layout_constraintBottom_toBottomOf="@+id/usersProfileImageCard"
-        app:layout_constraintEnd_toStartOf="@+id/usersProfileImageCard"
+        app:layout_constraintBottom_toBottomOf="@+id/usersEditProfileImageCard"
+        app:layout_constraintEnd_toStartOf="@+id/usersEditProfileImageCard"
         app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="@+id/profileBanner" />
+        app:layout_constraintStart_toStartOf="@+id/profileEditBanner" />
 
     <ImageButton
         android:id="@+id/confirmChangesEditProfile"
@@ -85,10 +85,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_check_24"
         android:backgroundTint="@color/charcoal"
-        app:layout_constraintBottom_toBottomOf="@+id/usersProfileImageCard"
+        app:layout_constraintBottom_toBottomOf="@+id/usersEditProfileImageCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toEndOf="@+id/usersProfileImageCard" />
+        app:layout_constraintStart_toEndOf="@+id/usersEditProfileImageCard" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editProfileNameField"
@@ -98,7 +98,7 @@
         android:layout_marginTop="40dp"
         android:paddingHorizontal="10dp"
         app:boxStrokeWidth="2dp"
-        app:layout_constraintTop_toBottomOf="@id/usersProfileImageCard">
+        app:layout_constraintTop_toBottomOf="@id/usersEditProfileImageCard">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editProfileNameInput"

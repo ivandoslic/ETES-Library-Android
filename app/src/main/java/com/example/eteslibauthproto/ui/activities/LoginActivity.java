@@ -1,8 +1,7 @@
-package com.example.eteslibauthproto.activities;
+package com.example.eteslibauthproto.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.eteslibauthproto.R;
 import com.example.eteslibauthproto.firestore.FirestoreClass;
@@ -12,6 +11,8 @@ import com.example.eteslibauthproto.utils.ETESLibEditText;
 import com.example.eteslibauthproto.utils.ETESLibTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+// TODO: If user logged in for the first time send him to AddFavoriteAuthorsActivity
 
 public class LoginActivity extends BaseActivity {
 
@@ -85,7 +86,7 @@ public class LoginActivity extends BaseActivity {
         Intent i;
 
         if(u.isProfileCompleted()) {
-            i = new Intent(LoginActivity.this, MainActivity.class);
+            i = new Intent(LoginActivity.this, DashboardActivity.class);
         } else {
             i = new Intent(LoginActivity.this, EditProfileActivity.class);
             i.putExtra(Constants.EXTRA_USER_DETAILS, u);

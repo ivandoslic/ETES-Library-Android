@@ -1,4 +1,4 @@
-package com.example.eteslibauthproto.activities;
+package com.example.eteslibauthproto.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +19,9 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                // TODO: Check if user is already logged in and then start Login/Dashboard activity accordingly
+
                 Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();

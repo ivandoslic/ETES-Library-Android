@@ -1,4 +1,4 @@
-package com.example.eteslibauthproto.activities;
+package com.example.eteslibauthproto.ui.activities;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -87,6 +87,7 @@ public class RegisterActivity extends BaseActivity {
         }
 
         if(!termsAndConditionsCheckbox.isChecked()){
+            // TODO: Define terms and conditions
             showErrorSnackBar("To create account you need to agree with terms and conditions!", true);
             return false;
         }
@@ -111,9 +112,10 @@ public class RegisterActivity extends BaseActivity {
 
                 User user = new User(firebaseUser.getUid(), name, email);
 
+                // TODO: Find out why the hell did you create the object bellow
                 FirestoreClass mFirestoreClass = new FirestoreClass();
 
-                mFirestoreClass.registerUser(RegisterActivity.this, user);
+                FirestoreClass.registerUser(RegisterActivity.this, user);
 
             } else {
                 hideProgressDialog();
@@ -126,6 +128,8 @@ public class RegisterActivity extends BaseActivity {
         hideProgressDialog();
 
         Toast.makeText(RegisterActivity.this, "You are registered successfully!", Toast.LENGTH_SHORT).show();
+
+        // TODO: Redirect user to LoginActivity after registration is successful
     }
 
 }

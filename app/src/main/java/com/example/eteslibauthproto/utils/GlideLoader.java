@@ -14,11 +14,11 @@ public class GlideLoader {
         this.context = c;
     }
 
-    public void loadUserPicture(Uri imageUri, ImageView imageView) {
+    public void loadUserPicture(Object image, ImageView imageView) {
         try {
 
             Glide.with(context)
-                    .load(imageUri)
+                    .load(image)
                     .centerCrop()
                     .placeholder(R.drawable.profile_placeholder_image)
                     .into(imageView);

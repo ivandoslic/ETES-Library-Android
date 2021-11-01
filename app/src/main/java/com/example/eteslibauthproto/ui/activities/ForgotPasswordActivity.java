@@ -1,6 +1,4 @@
-package com.example.eteslibauthproto.activities;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.eteslibauthproto.ui.activities;
 
 import android.os.Bundle;
 import android.widget.ImageView;

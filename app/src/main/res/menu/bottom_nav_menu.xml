@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--TODO: Change tab names to what they have to be, I am too lazy for now so do it later!-->
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_saved_books"
+        android:icon="@drawable/saved"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/avatar"
+        android:title="@string/title_notifications" />
+
+</menu>

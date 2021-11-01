@@ -5,20 +5,20 @@ import android.graphics.Typeface;
 
 public class TypeFactory {
 
-    private String JS_BOLD = "JosefinSans-Bold.ttf";
-    private String JS_BOLD_ITALIC = "JosefinSans-BoldItalic.ttf";
-    private String JS_EXTRA_LIGHT = "JosefinSans-ExtraLight.ttf";
-    private String JS_EXTRA_LIGHT_ITALIC = "JosefinSans-ExtraLightItalic.ttf";
-    private String JS_ITALIC = "JosefinSans-Italic.ttf";
-    private String JS_LIGHT = "JosefinSans-Light.ttf";
-    private String JS_LIGHT_ITALIC = "JosefinSans-LightItalic.ttf";
-    private String JS_MEDIUM = "JosefinSans-Medium.ttf";
-    private String JS_MEDIUM_ITALIC = "JosefinSans-MediumItalic.ttf";
-    private String JS_REGULAR = "JosefinSans-Regular.ttf";
-    private String JS_SEMI_BOLD = "JosefinSans-SemiBold.ttf";
-    private String JS_SEMI_BOLD_ITALIC = "JosefinSans-SemiBoldItalic.ttf";
-    private String JS_THIN = "JosefinSans-Thin.ttf";
-    private String JS_THIN_ITALIC = "JosefinSans-ThinItalic.ttf";
+    private final String JS_BOLD = "JosefinSans-Bold.ttf";
+    private final String JS_BOLD_ITALIC = "JosefinSans-BoldItalic.ttf";
+    private final String JS_EXTRA_LIGHT = "JosefinSans-ExtraLight.ttf";
+    private final String JS_EXTRA_LIGHT_ITALIC = "JosefinSans-ExtraLightItalic.ttf";
+    private final String JS_ITALIC = "JosefinSans-Italic.ttf";
+    private final String JS_LIGHT = "JosefinSans-Light.ttf";
+    private final String JS_LIGHT_ITALIC = "JosefinSans-LightItalic.ttf";
+    private final String JS_MEDIUM = "JosefinSans-Medium.ttf";
+    private final String JS_MEDIUM_ITALIC = "JosefinSans-MediumItalic.ttf";
+    private final String JS_REGULAR = "JosefinSans-Regular.ttf";
+    private final String JS_SEMI_BOLD = "JosefinSans-SemiBold.ttf";
+    private final String JS_SEMI_BOLD_ITALIC = "JosefinSans-SemiBoldItalic.ttf";
+    private final String JS_THIN = "JosefinSans-Thin.ttf";
+    private final String JS_THIN_ITALIC = "JosefinSans-ThinItalic.ttf";
 
     Typeface bold, boldItalic, extraLight, extraLightItalic, italic, light, lightItalic, medium, mediumItalic,
             regular, semiBold, semiBoldItalic, thin, thinItalic;

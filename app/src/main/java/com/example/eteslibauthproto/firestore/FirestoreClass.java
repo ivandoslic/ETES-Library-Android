@@ -6,15 +6,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.eteslibauthproto.activities.EditProfileActivity;
-import com.example.eteslibauthproto.activities.LoginActivity;
-import com.example.eteslibauthproto.activities.RegisterActivity;
+import com.example.eteslibauthproto.ui.activities.EditProfileActivity;
+import com.example.eteslibauthproto.ui.activities.LoginActivity;
+import com.example.eteslibauthproto.ui.activities.RegisterActivity;
 import com.example.eteslibauthproto.models.User;
+import com.example.eteslibauthproto.ui.activities.SettingsActivity;
 import com.example.eteslibauthproto.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -24,7 +23,7 @@ import java.util.HashMap;
 
 public class FirestoreClass {
 
-    private static FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.getInstance();
+    private static final FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.getInstance();
 
     public static void registerUser(RegisterActivity activity, User userInfo) {
         mFirebaseFirestore.collection(Constants.USERS)
@@ -74,11 +73,21 @@ public class FirestoreClass {
                     if(activity instanceof LoginActivity){
                         ((LoginActivity) activity).userLoggedInSuccess(u);
                     }
+
+                    if(activity instanceof SettingsActivity){
+                        ((SettingsActivity) activity).userDetailsSuccess(u);
+                    }
+
                 }).addOnFailureListener(err -> {
                     if(activity instanceof LoginActivity){
                         ((LoginActivity) activity).hideProgressDialog();
                     }
-                    Log.e(activity.getLocalClassName(), err.getMessage());
+
+                    if(activity instanceof SettingsActivity) {
+                        ((SettingsActivity) activity).hideProgressDialog();
+                    }
+
+                    // Log.e(activity.getLocalClassName(), err.getMessage());
         });
     }
 

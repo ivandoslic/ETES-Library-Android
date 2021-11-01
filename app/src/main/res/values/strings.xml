@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EtesLibAuthProto</string>
+    <string name="app_name">EtesLibrary</string>
     <string name="logo_on_splash">Logo on splash</string>
     <string name="logo_on_login">Logo on login screen</string>
     <string name="login_message">Login to\nget started</string>
@@ -13,4 +13,16 @@
     <string name="terms_amp_conditions"><u><![CDATA[Terms & Conditions]]></u></string>
     <string name="read_storage_perm_denied">You denied the permission for storage! You can allow it from settings.</string>
     <string name="image_selection_failed">Something went wrong! Could not get the image!</string>
+    <!-- <string name="title_activity_saved_books">MainActivity</string> -->
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="please_click_again_to_exit">Please click back again to exit.</string>
+    <string name="settings_favorites_label">Favorites</string>
+    <string name="settings_downloads_label">Downloads</string>
+    <string name="settings_night_mode_label">Night Mode</string>
+    <string name="settings_receive_notifications_label">Receive Notifications</string>
+    <string name="logout_button_label">Logout</string>
+    <string name="content_divider_label">CONTENT</string>
+    <string name="preferences_divider_label">PREFERENCES</string>
 </resources>

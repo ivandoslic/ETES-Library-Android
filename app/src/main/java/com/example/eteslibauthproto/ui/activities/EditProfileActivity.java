@@ -1,9 +1,7 @@
-package com.example.eteslibauthproto.activities;
+package com.example.eteslibauthproto.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,23 +25,21 @@ import com.example.eteslibauthproto.firestore.FirestoreClass;
 import com.example.eteslibauthproto.models.User;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.GlideLoader;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.protobuf.Any;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class EditProfileActivity extends BaseActivity {
 
-    private User user;
+    private User mUser;
     private ImageView profileImage;
     private EditText nameField;
     private RadioGroup genderSelection;
-    private RadioButton maleRadio;
+    private RadioButton maleRadio, femaleRadio;
     private Spinner yearSelector;
 
     private Uri selectedImageUri;
     private String userProfileImgURL;
+    private boolean imageChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,32 +49,75 @@ public class EditProfileActivity extends BaseActivity {
         Intent intent = getIntent();
 
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)){
-            user = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS);
+            mUser = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS);
         }
 
         // Profile Image
-        profileImage = (ImageView) findViewById(R.id.usersProfileImageImage);
+        profileImage = (ImageView) findViewById(R.id.usersEditProfProfileImageImage);
         ImageButton changeProfileButton = (ImageButton) findViewById(R.id.addNewProfileButton);
         changeProfileButton.setOnClickListener(v -> {
             changeProfile();
         });
 
-        // Name field
-        nameField = (EditText) findViewById(R.id.editProfileNameInput);
-        nameField.setText(user.getName());
+        // Back Button
+        ImageButton backButton = (ImageButton) findViewById(R.id.backButtonEditProf);
 
         // Gender selection
         genderSelection = (RadioGroup) findViewById(R.id.genderSelection);
         maleRadio = (RadioButton) findViewById(R.id.rbMale);
+        femaleRadio = (RadioButton) findViewById(R.id.rbFemale);
 
         // Year selection drop down
         yearSelector = (Spinner) findViewById(R.id.yearSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.classes, android.R.layout.simple_spinner_dropdown_item);
         yearSelector.setAdapter(adapter);
 
+        // TODO: Do a better implementation of this with action bar that says 'Complete profile'/'Edit profile'
+
+        if(mUser.isProfileCompleted()) {
+            backButton.setOnClickListener(v -> {
+                onBackPressed();
+            });
+
+            GlideLoader gl = new GlideLoader(this);
+            gl.loadUserPicture(mUser.getImage(), profileImage);
+
+            if(mUser.getGender().equals(Constants.MALE)){
+                maleRadio.setChecked(true);
+            } else {
+                femaleRadio.setChecked(true);
+            }
+
+            switch (mUser.getSchoolingYear()){
+                case 2:
+                    yearSelector.setSelection(1);
+                    break;
+                case 3:
+                    yearSelector.setSelection(2);
+                    break;
+                case 4:
+                    yearSelector.setSelection(3);
+                    break;
+                default:
+                    yearSelector.setSelection(0);
+                    break;
+            }
+
+        } else {
+
+            backButton.setOnClickListener(v -> {
+                showErrorSnackBar("Please complete your profile when logging first time!", true);
+            });
+
+        }
+
+        // Name field
+        nameField = (EditText) findViewById(R.id.editProfileNameInput);
+        nameField.setText(mUser.getName());
+
         // UUID Display
         EditText uuidField = (EditText) findViewById(R.id.userUUIDText);
-        uuidField.setText(user.getId());
+        uuidField.setText(mUser.getId());
 
         // Save Changes
         ImageButton saveButton = (ImageButton) findViewById(R.id.confirmChangesEditProfile);
@@ -103,7 +142,7 @@ public class EditProfileActivity extends BaseActivity {
         hideProgressDialog();
         Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
 
-        Intent i = new Intent(EditProfileActivity.this, MainActivity.class);
+        Intent i = new Intent(EditProfileActivity.this, SettingsActivity.class);
         startActivity(i);
         finish();
     }
@@ -133,6 +172,7 @@ public class EditProfileActivity extends BaseActivity {
 
                         GlideLoader gLoader = new GlideLoader(this);
                         gLoader.loadUserPicture(selectedImageUri, profileImage);
+                        imageChanged = true;
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast.makeText(this, getResources().getString(R.string.image_selection_failed), Toast.LENGTH_SHORT).show();
@@ -162,7 +202,7 @@ public class EditProfileActivity extends BaseActivity {
         if(validateProfileDetails()) {
             showProgressDialog("Please wait...");
 
-            if(selectedImageUri != null) {
+            if(selectedImageUri != null && imageChanged) {
                 FirestoreClass.uploadImageToCloud(this, selectedImageUri);
             } else {
                 updateProfileDetails();
@@ -174,7 +214,7 @@ public class EditProfileActivity extends BaseActivity {
 
     private void updateProfileDetails() {
 
-        // TODO: AKO NEMA PROMJENA U USER DETAILS ONDA NE PRAVITI NEPOTREBAN/NEUCINKOVIT REQUEST!
+        // TODO: IF NOTHING IS CHANGED DON'T MAKE USELESS REQUESTS TO SERVER
 
         String name = String.valueOf(nameField.getText()).trim();
         String gender = maleRadio.isChecked() ? Constants.MALE : Constants.FEMALE;
@@ -204,7 +244,7 @@ public class EditProfileActivity extends BaseActivity {
 
         userHM.put(Constants.COMPLETED_PROFILE, true);
 
-        if(!(userProfileImgURL.isEmpty())) {
+        if(userProfileImgURL != null && imageChanged) {
             userHM.put(Constants.IMAGE, userProfileImgURL);
         }
 

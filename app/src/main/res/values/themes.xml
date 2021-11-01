@@ -16,6 +16,8 @@
         <item name="android:windowTranslucentNavigation">true</item>
 
         <item name="android:autofilledHighlight">@color/autofilled_color</item>
+
+        <item name="switchStyle">@style/Widget.App.Switch</item>
     </style>
 
     <style name="Theme.EtesLibAuthProto.AuthScreens" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -35,6 +37,31 @@
         <item name="android:windowTranslucentNavigation">true</item>
 
         <item name="android:autofilledHighlight">@color/autofilled_color</item>
+    </style>
+
+    <style name="Theme.EtesLibAuthProto.Settings" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/charcoal</item>
+
+        <item name="colorOnSurface">@color/white</item>
+
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/charcoal</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/gunmetal</item>
+        <item name="colorSecondary">@color/color_snack_bar_success</item>
     </style>
 
     <style name="SpinnerTheme">
