@@ -31,6 +31,8 @@ public class DashboardActivity extends BaseActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+
+
     @Override
     public void onBackPressed() {
         doubleBackToExit();

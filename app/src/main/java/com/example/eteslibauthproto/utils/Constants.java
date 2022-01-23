@@ -28,6 +28,8 @@ public final class Constants {
     public static final int READ_STORAGE_PERMISSION_CODE = 2;
     public static final int PICK_IMAGE_REQUEST_CODE = 3;
 
+    public static final String LOGGED_FIRST_TIME = "loggedInFirstTime";
+
     public static void showImageChooser(Activity a) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
@@ -40,4 +42,9 @@ public final class Constants {
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(a.getContentResolver().getType(uri));
     }
 
+    // Local database constants
+
+    public static final String USERS_LOCAL_DATABASE_TABLE = "usersTable";
+    public static final String BOOKS_LOCAL_DATABASE_TABLE = "booksTable";
+    public static final String USER_LAST_LOGGED_TIME = "userLastLoggedTime";
 }

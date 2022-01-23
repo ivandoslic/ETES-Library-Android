@@ -3,7 +3,7 @@
     package="com.example.eteslibauthproto">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <!--TODO: Set all the activities screenOrientation to portrait!-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,11 +14,13 @@
         <activity
             android:name=".ui.activities.SettingsActivity"
             android:exported="true"
-            android:theme="@style/Theme.EtesLibAuthProto.Settings"/>
+            android:theme="@style/Theme.EtesLibAuthProto.Settings"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.DashboardActivity"
             android:exported="true"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.EditProfileActivity"
             android:exported="true"
@@ -26,7 +28,7 @@
         <activity
             android:name=".ui.activities.ForgotPasswordActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.EtesLibAuthProto.AuthScreens" />
         <activity
             android:name=".ui.activities.BaseActivity"
@@ -34,17 +36,17 @@
         <activity
             android:name=".ui.activities.RegisterActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.EtesLibAuthProto.AuthScreens" />
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.EtesLibAuthProto.AuthScreens" />
         <activity
             android:name=".ui.activities.SplashActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +56,7 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

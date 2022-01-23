@@ -26,6 +26,7 @@ public class User implements Parcelable {
 
     public User(DocumentSnapshot doc) {
         Number schYr = (Number) doc.get("schoolingYear");
+        assert schYr != null;
         int schYrInt = schYr.intValue();
 
         this.setId((String) doc.get("id"));

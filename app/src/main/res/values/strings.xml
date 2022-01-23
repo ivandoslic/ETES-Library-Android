@@ -25,4 +25,8 @@
     <string name="logout_button_label">Logout</string>
     <string name="content_divider_label">CONTENT</string>
     <string name="preferences_divider_label">PREFERENCES</string>
+    <string name="hi_message_home_fragment">Hi,</string>
+    <string name="username_placeholder">{username}</string>
+    <string name="what_are_you_looking_for_today_home_fragment">What are you looking for today?</string>
+    <string name="books_string">Books</string>
 </resources>

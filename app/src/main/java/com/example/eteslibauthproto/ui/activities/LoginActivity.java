@@ -87,6 +87,7 @@ public class LoginActivity extends BaseActivity {
 
         if(u.isProfileCompleted()) {
             i = new Intent(LoginActivity.this, DashboardActivity.class);
+            i.putExtra(Constants.EXTRA_USER_DETAILS, u);
         } else {
             i = new Intent(LoginActivity.this, EditProfileActivity.class);
             i.putExtra(Constants.EXTRA_USER_DETAILS, u);
