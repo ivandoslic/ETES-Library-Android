@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.example.eteslibauthproto.databinding.FragmentHomeBinding;
 import com.example.eteslibauthproto.firestore.FirestoreClass;
 import com.example.eteslibauthproto.models.Book;
 import com.example.eteslibauthproto.models.User;
+import com.example.eteslibauthproto.ui.activities.BookPreviewActivity;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.GlideLoader;
 import com.example.eteslibauthproto.utils.adapters.BooksHorizontalListAdapter;
@@ -38,16 +40,17 @@ public class HomeFragment extends BaseFragment {
     // private HomeViewModel homeViewModel;
     private User mUser;
     private ArrayList<Book> currentlyLoadedBookList;
+    private ArrayList<Book> randomBooks;
+    private ArrayList<Book> specificAuthorBooks;
     private FragmentHomeBinding binding;
     private AppDataManager dataManager;
-    User currentUser;
     TextView usernameText;
     ImageView profileImageView;
-    RecyclerView booksRecyclerView;
+    RecyclerView booksRecyclerView, specificAuthorBooksRecyclerView;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
         dataManager = new AppDataManager(getActivity(), this);
         FirestoreClass.getUserDetailsFragment(this);
     }
@@ -55,10 +58,13 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+
+
         View root = binding.getRoot();
         profileImageView = binding.profileImageViewHome;
         usernameText = binding.usernameLabelHome;
         booksRecyclerView = binding.booksRecyclerView;
+        specificAuthorBooksRecyclerView = binding.specificAuthorBooksRecyclerView;
 
         return root;
     }
@@ -76,19 +82,82 @@ public class HomeFragment extends BaseFragment {
         binding = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (currentlyLoadedBookList != null) {
+            updateUI();
+            initialLoad();
+        }
+    }
+
     public void setCurrentlyLoadedBookList(ArrayList<Book> bookArrayList) {
         if (currentlyLoadedBookList == null)
             currentlyLoadedBookList = new ArrayList<>();
 
         currentlyLoadedBookList.addAll(bookArrayList);
 
+        sortCollectedData();
+    }
+
+    private void sortCollectedData() {
+        if(specificAuthorBooks == null)
+            specificAuthorBooks = new ArrayList<>();
+
+        for(Book book : currentlyLoadedBookList) {
+            if(book.getAuthorName().compareTo("Miroslav Krleza") == 0) {
+                specificAuthorBooks.add(book);
+            }
+        }
+
+        if(randomBooks == null)
+            randomBooks = new ArrayList<>();
+
+        if(currentlyLoadedBookList.size() > 5) {
+            int maxCount = 5;
+            for (int i = 0; i < maxCount; i++) {
+                if(currentlyLoadedBookList.get(i).getAuthorName().compareTo("Miroslav Krleza") != 0) {
+                    randomBooks.add(currentlyLoadedBookList.get(i));
+                } else {
+                    maxCount++;
+                }
+            }
+        } else {
+            randomBooks.addAll(currentlyLoadedBookList);
+        }
+
         updateUI();
     }
 
     private void updateUI() {
-        BooksHorizontalListAdapter booksHorizontalListAdapter = new BooksHorizontalListAdapter(getContext(), currentlyLoadedBookList);
+        BooksHorizontalListAdapter booksHorizontalListAdapter = new BooksHorizontalListAdapter(getContext(), randomBooks);
+
+        booksHorizontalListAdapter.setOnItemClickListener(new BooksHorizontalListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                Intent i = new Intent(getActivity(), BookPreviewActivity.class);
+                i.putExtra(Constants.BOOK_PREVIEW_INTENT_NAME, randomBooks.get(position));
+                i.putExtra(Constants.EXTRA_USER_DETAILS, mUser);
+                startActivity(i);
+            }
+        });
+
         booksRecyclerView.setAdapter(booksHorizontalListAdapter);
         booksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        BooksHorizontalListAdapter booksHorizontalListAdapterSpecificAuthor = new BooksHorizontalListAdapter(getContext(), specificAuthorBooks);
+
+        booksHorizontalListAdapterSpecificAuthor.setOnItemClickListener(new BooksHorizontalListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                Intent i = new Intent(getActivity(), BookPreviewActivity.class);
+                i.putExtra(Constants.BOOK_PREVIEW_INTENT_NAME, specificAuthorBooks.get(position));
+                startActivity(i);
+            }
+        });
+
+        specificAuthorBooksRecyclerView.setAdapter(booksHorizontalListAdapterSpecificAuthor);
+        specificAuthorBooksRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     public void storeUser(User u) {

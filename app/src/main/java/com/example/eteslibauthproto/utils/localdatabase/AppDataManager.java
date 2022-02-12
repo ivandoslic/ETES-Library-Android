@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class AppDataManager {
     private BooksLocalDatabase booksLocalDatabase;

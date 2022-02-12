@@ -15,6 +15,8 @@
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/font/josefin_sans.xml" value="0.2361111111111111" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout-v28/activity_main.xml" value="0.20878623188405798" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_base.xml" value="0.2006340579710145" />
+        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_book_preview.xml" value="0.25" />
+        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_create_review.xml" value="0.38079191238416177" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_dashboard.xml" value="0.14260385005065856" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/activity_forgot_password.xml" value="0.19610507246376813" />
@@ -28,10 +30,12 @@
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/book_recycler_item_home.xml" value="0.5" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/dialog_progress.xml" value="0.19610507246376813" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/fragment_dashboard.xml" value="0.19791666666666666" />
-        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/fragment_home.xml" value="0.4708333333333333" />
+        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/fragment_home.xml" value="0.23541666666666666" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/fragment_saved_books.xml" value="0.1933876811594203" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/profile_background.xml" value="0.22" />
+        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/layout/review_recycler_item.xml" value="0.33" />
+        <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/menu/book_preview_top_bar_menu.xml" value="0.15677083333333333" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/menu/bottom_nav_menu.xml" value="0.29322916666666665" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/menu/settings_top_bar.xml" value="0.29322916666666665" />
         <entry key="..\:/Projects/EtesLibAuthProto/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3046153846153846" />

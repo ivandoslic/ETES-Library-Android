@@ -29,4 +29,13 @@
     <string name="username_placeholder">{username}</string>
     <string name="what_are_you_looking_for_today_home_fragment">What are you looking for today?</string>
     <string name="books_string">Books</string>
+    <string name="krleza_label">Krleža</string>
+    <string name="button_saves_book_that_user_is_previewing">Button saves book that user is previewing</string>
+    <string name="save_string">save</string>
+    <string name="lorem_ipsum_30">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis neque ut ante facilisis, id hendrerit risus malesuada. Mauris gravida auctor arcu vel mattis. Morbi elementum mauris id neque semper.</string>
+    <string name="write_your_review">Write your review</string>
+    <string name="write_your_review_in_here">Write your review in here...</string>
+    <string name="submit">Submit</string>
+    <string name="users_profile_image_desc">Users profile image</string>
+    <string name="review_options_dropdown_menu_icon_desc">Review options dropdown menu icon</string>
 </resources>

@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,47 +14,50 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eteslibauthproto.R;
-import com.example.eteslibauthproto.models.Book;
-import com.example.eteslibauthproto.utils.GlideLoader;
+import com.example.eteslibauthproto.models.Review;
+import com.example.eteslibauthproto.utils.ETESLibTextView;
 
 import java.util.ArrayList;
 
-public class BooksHorizontalListAdapter extends RecyclerView.Adapter<BooksHorizontalListAdapter.ViewHolder>{
+public class ReviewsVerticalListAdapter extends RecyclerView.Adapter<ReviewsVerticalListAdapter.ViewHolder>{
 
-    private ArrayList<Book> books;
+    private ArrayList<Review> reviews;
     private LayoutInflater layoutInflater;
     private Context context;
     private AdapterView.OnItemClickListener itemClickListener;
 
-    public BooksHorizontalListAdapter(Context context, ArrayList<Book> items) {
+    public ReviewsVerticalListAdapter(Context context, ArrayList<Review> items) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.books = items;
+        this.reviews = items;
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.book_recycler_item_home, parent, false);
+        View view = layoutInflater.inflate(R.layout.review_recycler_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Book currentBook = books.get(position);
+        Review currentReview = reviews.get(position);
 
         Glide.with(context)
-                .load(currentBook.getCover())
+                .load(currentReview.getUserImage())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.coverImageView);
+                .into(holder.userProfileImageView);
 
-        holder.titleTextView.setText(currentBook.getTitle());
-        holder.authorTextView.setText(currentBook.getAuthorName());
+        holder.reviewTextTextView.setText(currentReview.getText());
+        holder.ratingValueTextView.setText(String.valueOf(currentReview.getRating()));
+        holder.usernameTextView.setText(currentReview.getUsername());
+
+        holder.reviewRatingBar.setRating(currentReview.getRating());
     }
 
     @Override
     public int getItemCount() {
-        return books.size();
+        return reviews.size();
     }
 
     public interface OnItemClickListener {
@@ -69,21 +71,25 @@ public class BooksHorizontalListAdapter extends RecyclerView.Adapter<BooksHorizo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView coverImageView;
-        TextView titleTextView, authorTextView;
+        ImageView userProfileImageView, optionsMenuImageView;
+        ETESLibTextView usernameTextView, ratingValueTextView, reviewTextTextView;
+        RatingBar reviewRatingBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            coverImageView = itemView.findViewById(R.id.booksRecyclerViewImage);
-            titleTextView = itemView.findViewById(R.id.booksRecyclerViewTitleTV);
-            authorTextView = itemView.findViewById(R.id.booksRecyclerViewAuthorTV);
+            userProfileImageView = itemView.findViewById(R.id.reviewUserProfileImage);
+            optionsMenuImageView = itemView.findViewById(R.id.reviewDropdownOptionButton);
+            usernameTextView = itemView.findViewById(R.id.reviewUsernameTV);
+            ratingValueTextView = itemView.findViewById(R.id.reviewRatingValueTV);
+            reviewTextTextView = itemView.findViewById(R.id.reviewReviewTextTV);
+            reviewRatingBar = itemView.findViewById(R.id.reviewRatingBar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION)
+                        if(position != RecyclerView.NO_POSITION)
                             listener.onItemClick(itemView, position);
                     }
                 }

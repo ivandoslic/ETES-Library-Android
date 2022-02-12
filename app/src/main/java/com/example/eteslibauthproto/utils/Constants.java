@@ -7,6 +7,8 @@ import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
 public final class Constants {
+    public static final String BOOK_FOR_CREATING_REVIEW = "book_for_creating_review";
+
     private Constants() {}
 
     public static final String USERS = "users";
@@ -30,6 +32,8 @@ public final class Constants {
 
     public static final String LOGGED_FIRST_TIME = "loggedInFirstTime";
 
+    public static final String REVIEWS = "reviews";
+
     public static void showImageChooser(Activity a) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
@@ -47,4 +51,19 @@ public final class Constants {
     public static final String USERS_LOCAL_DATABASE_TABLE = "usersTable";
     public static final String BOOKS_LOCAL_DATABASE_TABLE = "booksTable";
     public static final String USER_LAST_LOGGED_TIME = "userLastLoggedTime";
+
+    // Book preview
+
+    public static final String BOOK_PREVIEW_INTENT_NAME = "book_for_book_preview";
+
+    // Request codes
+
+    public static final int CREATE_REVIEW_REQUEST_CODE = 50;
+
+    // Error & result codes
+
+    public static final int INVALID_RATING_FLOAT = 100;
+    public static final int EMPTY_RATING_TEXT = 101;
+    public static final int REVIEW_UPLOAD_FAILED = 102;
+    public static final int REVIEW_UPLOAD_SUCCEEDED = 103;
 }

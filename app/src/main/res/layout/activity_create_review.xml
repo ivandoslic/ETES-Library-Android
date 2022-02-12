@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.CreateReviewActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/createReviewTopAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Write a review"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+            app:navigationIconTint="@color/black"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/createReviewScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/createReviewInfoCard"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:cardCornerRadius="25dp"
+                android:elevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp">
+
+                        <ImageView
+                            android:id="@+id/createReviewBookImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="10dp">
+
+                        <com.example.eteslibauthproto.utils.ETESLibTextView
+                            android:id="@+id/createReviewBookTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/username_placeholder"
+                            android:textColor="@color/black_high_emphasis"
+                            android:textSize="20sp"
+                            android:layout_marginTop="20dp"/>
+
+                        <com.example.eteslibauthproto.utils.ETESLibTextView
+                            android:id="@+id/createReviewBookDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lorem_ipsum_30"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black_medium_emphasis"
+                            android:maxLines="4"
+                            android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:id="@+id/createReviewWriteYourReviewLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/write_your_review"
+                app:layout_constraintTop_toBottomOf="@id/createReviewInfoCard"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black_high_emphasis"
+                app:font_name="josefinSansSemiBold"
+                android:textSize="16sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/createReviewTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/createReviewWriteYourReviewLabel"
+                app:counterEnabled="true"
+                app:counterMaxLength="350"
+                app:boxBackgroundColor="@color/very_light_grey"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                android:hint="How was the book? We would really like to know!">
+
+            <com.example.eteslibauthproto.utils.ETESLibEditText
+                android:id="@+id/createReviewReviewTextArea"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black_medium_emphasis"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:minLines="6"
+                android:gravity="top|start"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:id="@+id/createReviewHowWouldYouRateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How would you rate this book?"
+                app:layout_constraintTop_toBottomOf="@id/createReviewTextInputLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="25dp"
+                android:textColor="@color/black_medium_emphasis"/>
+
+            <RatingBar
+                android:id="@+id/createReviewRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/createReviewHowWouldYouRateLabel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:rating="0"
+                android:layout_marginTop="10dp" />
+
+            <com.example.eteslibauthproto.utils.ETESLibButton
+                android:id="@+id/createReviewSubmitButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/submit"
+                app:layout_constraintTop_toBottomOf="@id/createReviewRatingBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:backgroundTint="@color/gunmetal"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

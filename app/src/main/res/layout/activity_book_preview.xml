@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bookPreviewRootLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.BookPreviewActivity"
+    android:layout_marginTop="15dp">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/bookPreviewTopAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/book_preview_top_bar_menu"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+            app:navigationIconTint="@color/black"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bookPreviewScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bookPreviewScrollViewConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/bookPreviewBookCoverView"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@color/gunmetal"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bookPreviewAuthorImageCardView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardCornerRadius="60dp"
+                app:layout_constraintEnd_toEndOf="@+id/bookPreviewBookCoverView"
+                app:layout_constraintHorizontal_bias="0.35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <ImageView
+                    android:id="@+id/bookPreviewAuthorImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@color/purple_700" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:id="@+id/bookPreviewBookTitleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title placeholder"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewBookCoverView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="10dp"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                app:font_name="josefinSansSemiBold" />
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:id="@+id/bookPreviewAuthorNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author name placeholder"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewBookTitleTV"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:id="@+id/bookPreviewBookInfoLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewAuthorNameTV"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp">
+
+                    <com.example.eteslibauthproto.utils.ETESLibTextView
+                        android:id="@+id/bookPreviewYearWrittenTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Written: year"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <com.example.eteslibauthproto.utils.ETESLibTextView
+                        android:id="@+id/bookPreviewLanguageTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Language: language"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <com.example.eteslibauthproto.utils.ETESLibTextView
+                        android:id="@+id/bookPreviewGenreTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Genre: genre"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <com.example.eteslibauthproto.utils.ETESLibTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Average rating:"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_baseline_star_24" />
+
+                        <com.example.eteslibauthproto.utils.ETESLibTextView
+                            android:id="@+id/reviewAverageRatingTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5.0"
+                            android:layout_marginStart="5dp"
+                            android:textSize="34sp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bookPreviewDescriptionLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewBookInfoLL"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="10dp">
+
+                <com.example.eteslibauthproto.utils.ETESLibTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
+
+                <com.example.eteslibauthproto.utils.ETESLibTextView
+                    android:id="@+id/bookPreviewDescriptionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lorem_ipsum_30"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bookPreviewReviewsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewDescriptionLL"
+                android:orientation="vertical"
+                android:gravity="center"
+                />
+
+            <LinearLayout
+                android:id="@+id/bookPreviewSeeReviewsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/bookPreviewReviewsLL"
+                android:gravity="center_horizontal">
+
+                <com.example.eteslibauthproto.utils.ETESLibTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="See reviews"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    app:tint="@color/black" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/bookPreviewExtendedFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="15dp"
+        android:text="add review"
+        android:backgroundTint="@color/charcoal"
+        android:textColor="@color/white"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:iconTint="@color/white"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

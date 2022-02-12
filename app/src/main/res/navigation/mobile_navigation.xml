@@ -9,17 +9,40 @@
         android:id="@+id/navigation_home"
         android:name="com.example.eteslibauthproto.ui.fragments.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_saved_books"
+            app:destination="@id/navigation_saved_books"
+            app:popUpTo="@id/navigation_saved_books"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_saved_books"
         android:name="com.example.eteslibauthproto.ui.fragments.SavedBooksFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_saved_books" />
+        tools:layout="@layout/fragment_saved_books" >
+        <action
+            android:id="@+id/action_navigation_saved_books_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.eteslibauthproto.ui.fragments.ProfileFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_saved_books"
+            app:destination="@id/navigation_saved_books"
+            app:popUpTo="@id/navigation_saved_books"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

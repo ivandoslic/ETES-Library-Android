@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/reviewUserProfileImageCV"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/reviewUserProfileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/users_profile_image_desc" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/reviewUsernameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/username_placeholder"
+        app:layout_constraintLeft_toRightOf="@id/reviewUserProfileImageCV"
+        app:layout_constraintTop_toTopOf="@id/reviewUserProfileImageCV"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black_high_emphasis"
+        android:textSize="16sp" />
+
+    <RatingBar
+        android:id="@+id/reviewRatingBar"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        app:layout_constraintTop_toBottomOf="@id/reviewUsernameTV"
+        app:layout_constraintLeft_toRightOf="@id/reviewUserProfileImageCV"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/reviewRatingValueTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/reviewRatingBar"
+        app:layout_constraintTop_toTopOf="@id/reviewRatingBar"
+        app:layout_constraintBottom_toBottomOf="@id/reviewRatingBar"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black_high_emphasis"
+        android:textSize="11sp"
+        tools:text="0.0" />
+
+    <ImageView
+        android:id="@+id/reviewDropdownOptionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_more_vert_24"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:tint="@color/black_high_emphasis"
+        android:contentDescription="@string/review_options_dropdown_menu_icon_desc" />
+
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/reviewReviewTextTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/reviewUserProfileImageCV"
+        tools:text="@string/lorem_ipsum_30"
+        android:textColor="@color/black_medium_emphasis"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
