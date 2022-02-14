@@ -34,8 +34,20 @@
     <string name="save_string">save</string>
     <string name="lorem_ipsum_30">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis neque ut ante facilisis, id hendrerit risus malesuada. Mauris gravida auctor arcu vel mattis. Morbi elementum mauris id neque semper.</string>
     <string name="write_your_review">Write your review</string>
-    <string name="write_your_review_in_here">Write your review in here...</string>
+    <string name="write_your_review_in_here">Write your review in here…</string>
     <string name="submit">Submit</string>
     <string name="users_profile_image_desc">Users profile image</string>
     <string name="review_options_dropdown_menu_icon_desc">Review options dropdown menu icon</string>
+    <string name="num_value_placeholder">0</string>
+    <string name="books_read_label">books read</string>
+    <string name="reviews_label">reviews</string>
+    <string name="currently_reading_label">Currently reading:</string>
+    <string name="favorite_label">Favorite</string>
+    <string name="current_label">Current</string>
+    <string name="current_book_label">Current book</string>
+    <string name="favorite_author_label">Favorite author:</string>
+    <string name="review_on_book_label">Review on {book}:</string>
+    <string name="see_all_reviews_label">See all\nreviews</string>
+    <string name="see_all_achievements_label">See all\nachievements</string>
+    <string name="see_all_books_label">See all\nbooks</string>
 </resources>

@@ -21,6 +21,7 @@ import com.example.eteslibauthproto.ui.activities.SettingsActivity;
 import com.example.eteslibauthproto.ui.activities.SplashActivity;
 import com.example.eteslibauthproto.ui.fragments.BaseFragment;
 import com.example.eteslibauthproto.ui.fragments.HomeFragment;
+import com.example.eteslibauthproto.ui.fragments.ProfileFragment;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.localdatabase.AppDataManager;
 import com.example.eteslibauthproto.utils.misc.DatesInStringComparator;
@@ -80,6 +81,10 @@ public class FirestoreClass {
 
                     if(fragment instanceof HomeFragment) {
                         ((HomeFragment) fragment).storeUser(u);
+                    }
+
+                    if(fragment instanceof ProfileFragment) {
+                        ((ProfileFragment) fragment).storeUser(u);
                     }
 
                 }).addOnFailureListener(err -> {
@@ -318,5 +323,36 @@ public class FirestoreClass {
                         }
                     }
                 });
+    }
+
+    public static void getBookFromIDForProfile(ProfileFragment fragment, String bookId) {
+        mFirebaseFirestore.collection("books")
+            .document(bookId)
+            .get()
+            .addOnSuccessListener(s -> {
+                Book book = new Book(s);
+                fragment.gotBookOfReview(book);
+            });
+    }
+
+    public static void getUsersReviews(Fragment fragment, User user) {
+        mFirebaseFirestore.collection(Constants.REVIEWS)
+                .whereEqualTo("userId", user.getId())
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    if(task.getResult() != null) {
+                        ArrayList<Review> reviewsList = new ArrayList<>();
+                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                            reviewsList.add(new Review(documentSnapshot));
+                        }
+
+                        if(fragment instanceof ProfileFragment)
+                            ((ProfileFragment) fragment).gotUserReviewsSuccessfully(reviewsList);
+                    }
+                }
+            }
+        });
     }
 }

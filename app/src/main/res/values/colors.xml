@@ -13,6 +13,8 @@
     <color name="black_50transparent">#80000000</color>
     <color name="black_25transparent">#40000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_high_emphasis">#DEFFFFFF</color>
+    <color name="white_medium_emphasis">#99FFFFFF</color>
     <color name="gunmetal">#202C39</color>
     <color name="charcoal">#283845</color>
     <color name="charcoal_50transparent">#80283845</color>

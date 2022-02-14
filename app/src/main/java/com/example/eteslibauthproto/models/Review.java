@@ -31,7 +31,7 @@ public class Review implements Parcelable {
     public Review(DocumentSnapshot doc) {
         this.reviewId = (String) doc.getId();
         this.userId = (String) doc.get("userId");
-        this.bookId = (String) doc.get("userId");
+        this.bookId = (String) doc.get("bookId");
         this.username = (String) doc.get("username");
         this.userImage = (String) doc.get("userImage");
         this.text = (String) doc.get("text");
