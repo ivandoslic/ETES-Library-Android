@@ -147,6 +147,10 @@ public class FirestoreClass {
                         ((SplashActivity) activity).cantFetchUserData();
                     }
 
+                    if(activity instanceof CreateReviewActivity) {
+                        ((CreateReviewActivity) activity).hideProgressDialog();
+                    }
+
                     // Log.e(activity.getLocalClassName(), err.getMessage());
         });
     }
@@ -246,12 +250,12 @@ public class FirestoreClass {
         });
     }
 
-    public static void createReview(CreateReviewActivity activity, Review review) {
+    public static void createReview(CreateReviewActivity activity, Review review, Review oldReview) {
         mFirebaseFirestore.collection(Constants.REVIEWS)
                 .document(review.getReviewId())
                 .set(review, SetOptions.merge())
                 .addOnSuccessListener(s -> {
-                    updateBookAvgRating(review);
+                    updateBookAvgRating(review, oldReview);
                     activity.reviewSuccessfullyPushedToTheServer(review);
                 })
                 .addOnFailureListener(e -> {
@@ -259,10 +263,7 @@ public class FirestoreClass {
                 });
     }
 
-    private static void updateBookAvgRating(Review review) {
-
-        // TODO: also check if user already reviewed, then remove old rating and add new an then recalculate avg rating
-
+    private static void updateBookAvgRating(Review review, Review oldReview) {
         mFirebaseFirestore.collection("books")
                 .document(review.getBookId())
                 .get()
@@ -274,6 +275,13 @@ public class FirestoreClass {
                    if(avg == null && noOfReviews == null) {
                        avgFloat = review.getRating();
                        noOfReviewsInt = 1;
+                   } else if (avg != null && noOfReviews != null && oldReview != null) {
+                       avgFloat = avg.floatValue();
+                       noOfReviewsInt = noOfReviews.intValue();
+
+                       float sumOfRatings = (avgFloat * noOfReviewsInt) - oldReview.getRating() + review.getRating();
+
+                       avgFloat = sumOfRatings / noOfReviewsInt;
                    } else if (avg != null && noOfReviews != null) {
                        avgFloat = avg.floatValue();
                        noOfReviewsInt = noOfReviews.intValue();

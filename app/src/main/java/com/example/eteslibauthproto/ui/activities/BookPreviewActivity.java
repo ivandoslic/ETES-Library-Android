@@ -38,6 +38,9 @@ import java.util.ArrayList;
 
 public class BookPreviewActivity extends BaseActivity {
 
+    private boolean hasReviewed = false;
+    private Review oldReview = null;
+
     private Book currentBook;
     private User currentUser;
     private Author currentAuthor;
@@ -77,6 +80,7 @@ public class BookPreviewActivity extends BaseActivity {
 
                 i.putExtra(Constants.BOOK_FOR_CREATING_REVIEW, currentBook);
                 i.putExtra(Constants.EXTRA_USER_DETAILS, currentUser);
+                i.putExtra(Constants.OLD_USER_REVIEW, oldReview);
 
                 startActivityForResult(i, Constants.CREATE_REVIEW_REQUEST_CODE);
             }
@@ -157,6 +161,15 @@ public class BookPreviewActivity extends BaseActivity {
         return false;
     }
 
+    private Review getOldReview() {
+        for(Review review : currentReviews) {
+            if((review.getUserId()).compareTo(currentUser.getId()) == 0)
+                return review;
+        }
+
+        return null;
+    }
+
     public void gotReviewsSuccessfully(ArrayList<Review> loadedReviewArrayList) {
         if(currentReviews == null) {
             currentReviews = new ArrayList<>();
@@ -170,6 +183,9 @@ public class BookPreviewActivity extends BaseActivity {
         if(userAlreadyReviewed()) {
             extendedFloatingActionButton.setText("EDIT REVIEW");
             extendedFloatingActionButton.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_baseline_edit_review_24));
+            this.hasReviewed = true;
+            if(oldReview == null)
+                oldReview = getOldReview();
         }
 
         Handler handler = new Handler();
@@ -190,6 +206,9 @@ public class BookPreviewActivity extends BaseActivity {
         if(userAlreadyReviewed()) {
             extendedFloatingActionButton.setText("EDIT REVIEW");
             extendedFloatingActionButton.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_baseline_edit_review_24));
+            this.hasReviewed = true;
+            if(oldReview == null)
+                oldReview = getOldReview();
         }
 
         ReviewsVerticalListAdapter reviewsVerticalListAdapter = new ReviewsVerticalListAdapter(this, currentReviews);

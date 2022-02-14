@@ -8,6 +8,7 @@ import android.webkit.MimeTypeMap;
 
 public final class Constants {
     public static final String BOOK_FOR_CREATING_REVIEW = "book_for_creating_review";
+    public static final String OLD_USER_REVIEW = "users_old_review";
 
     private Constants() {}
 

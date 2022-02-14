@@ -23,6 +23,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class CreateReviewActivity extends BaseActivity {
 
     Book currentBook;
+    Review oldReview = null;
     MaterialToolbar topAppBar;
     ETESLibTextView bookTitleTV, bookDescriptionTV;
     ImageView bookCoverImageView;
@@ -31,6 +32,7 @@ public class CreateReviewActivity extends BaseActivity {
     ETESLibButton submitButton;
 
     float bookRating = 0;
+    boolean editingReview = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,15 @@ public class CreateReviewActivity extends BaseActivity {
         setContentView(R.layout.activity_create_review);
 
         currentBook = getIntent().getParcelableExtra(Constants.BOOK_FOR_CREATING_REVIEW);
+        oldReview = getIntent().getParcelableExtra(Constants.OLD_USER_REVIEW);
 
         if(currentBook == null) {
             // TODO: alert user that problem has occurred!
             finish();
         }
+
+        if(oldReview != null)
+            editingReview = true;
 
         topAppBar = (MaterialToolbar) findViewById(R.id.createReviewTopAppBar);
         bookTitleTV = (ETESLibTextView) findViewById(R.id.createReviewBookTitle);
@@ -94,6 +100,11 @@ public class CreateReviewActivity extends BaseActivity {
         });
 
         submitButton.setOnClickListener(v -> submitReview());
+
+        if(editingReview) {
+            reviewRatingBar.setRating(oldReview.getRating());
+            reviewTextArea.setText(oldReview.getText());
+        }
     }
 
     private void submitReview() {
@@ -121,7 +132,7 @@ public class CreateReviewActivity extends BaseActivity {
     public void gotUserSuccessfully(User u) {
         String text = String.valueOf(reviewTextArea.getText());
         Review review = new Review(u, currentBook, text.trim(),bookRating);
-        FirestoreClass.createReview(this, review);
+        FirestoreClass.createReview(this, review, oldReview);
     }
 
     public void reviewSuccessfullyPushedToTheServer(Review review) {
