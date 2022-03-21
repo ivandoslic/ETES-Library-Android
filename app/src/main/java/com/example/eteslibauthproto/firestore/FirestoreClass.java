@@ -10,15 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.eteslibauthproto.models.Book;
+import com.example.eteslibauthproto.models.BookSearchItem;
 import com.example.eteslibauthproto.models.Review;
 import com.example.eteslibauthproto.ui.activities.BookPreviewActivity;
 import com.example.eteslibauthproto.ui.activities.CreateReviewActivity;
 import com.example.eteslibauthproto.ui.activities.EditProfileActivity;
+import com.example.eteslibauthproto.ui.activities.FullTextSearchActivity;
 import com.example.eteslibauthproto.ui.activities.LoginActivity;
 import com.example.eteslibauthproto.ui.activities.RegisterActivity;
 import com.example.eteslibauthproto.models.User;
+import com.example.eteslibauthproto.ui.activities.SearchActivity;
 import com.example.eteslibauthproto.ui.activities.SettingsActivity;
 import com.example.eteslibauthproto.ui.activities.SplashActivity;
+import com.example.eteslibauthproto.ui.activities.UserProfileActivity;
 import com.example.eteslibauthproto.ui.fragments.BaseFragment;
 import com.example.eteslibauthproto.ui.fragments.HomeFragment;
 import com.example.eteslibauthproto.ui.fragments.ProfileFragment;
@@ -30,7 +34,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,6 +45,9 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.w3c.dom.Document;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -47,6 +56,85 @@ import java.util.Map;
 public class FirestoreClass {
 
     private static final FirebaseFirestore mFirebaseFirestore = FirebaseFirestore.getInstance();
+
+    private static User currentUser;
+    private static ArrayList<BookSearchItem> booksSearchList;
+
+    private static void setCurrentUserInstance(User user) {
+        currentUser = user;
+    }
+
+    private static void getCurrentUserDirectly() {
+        mFirebaseFirestore.collection(Constants.USERS)
+                .document(getCurrentUserID())
+                .get()
+                .addOnSuccessListener(doc -> {
+                    User u = new User(doc);
+
+                    setCurrentUserInstance(u);
+
+                    getCurrentUserInstance();
+                }).addOnFailureListener(err -> {
+        });
+    }
+
+    public static User getCurrentUserInstance() {
+        if (currentUser == null) {
+            getCurrentUserDirectly();
+        } else {
+            return currentUser;
+        }
+        return null;
+    }
+
+    public static ArrayList<BookSearchItem> getBooksSearchListInstance() {
+        if(booksSearchList == null) {
+            getBooksSearchListDirectly();
+        } else {
+            return booksSearchList;
+        }
+        return null;
+    }
+
+    private static void getBooksSearchListDirectly() {
+        mFirebaseFirestore.collection("search")
+                .document("search-books")
+                .get()
+                .addOnSuccessListener(doc -> {
+                    ArrayList<BookSearchItem> tempList = new ArrayList<>();
+                    ArrayList<HashMap> arrayTemp = (ArrayList<HashMap>) doc.get("items");
+                    for(HashMap<String, String> item : arrayTemp) {
+                        BookSearchItem tempItem = new BookSearchItem(item.get("genre"), item.get("image"), item.get("title"), item.get("uid"));
+                        tempList.add(tempItem);
+                    }
+
+                    setBooksSearchList(tempList);
+
+                    getBooksSearchListInstance();
+                }).addOnFailureListener(err -> { });
+    }
+
+    public static void getBooksSearchListActivitySearch(SearchActivity activity) {
+        mFirebaseFirestore.collection("search")
+                .document("search-books")
+                .get()
+                .addOnSuccessListener(doc -> {
+                    ArrayList<BookSearchItem> tempList = new ArrayList<>();
+                    ArrayList<HashMap> arrayTemp = (ArrayList<HashMap>) doc.get("items");
+                    for(HashMap<String, String> item : arrayTemp) {
+                        BookSearchItem tempItem = new BookSearchItem(item.get("genre"), item.get("image"), item.get("title"), item.get("uid"));
+                        tempList.add(tempItem);
+                    }
+
+                    setBooksSearchList(tempList);
+
+                    activity.gotSearchListSuccessfully(tempList);
+                }).addOnFailureListener(err -> { });
+    }
+
+    public static void setBooksSearchList(ArrayList<BookSearchItem> booksSearchList) {
+        FirestoreClass.booksSearchList = booksSearchList;
+    }
 
     public static void registerUser(RegisterActivity activity, User userInfo) {
         mFirebaseFirestore.collection(Constants.USERS)
@@ -59,6 +147,8 @@ public class FirestoreClass {
                     activity.hideProgressDialog();
                     Log.e("REGISTRATION_ERROR", "Error occurred while registering the user!", e);
                 });
+
+
     }
 
     public static String getCurrentUserID() {
@@ -79,6 +169,8 @@ public class FirestoreClass {
                 .addOnSuccessListener(doc -> {
                     User u = new User(doc);
 
+                    setCurrentUserInstance(u);
+
                     if(fragment instanceof HomeFragment) {
                         ((HomeFragment) fragment).storeUser(u);
                     }
@@ -97,6 +189,8 @@ public class FirestoreClass {
                 .get()
                 .addOnSuccessListener(doc -> {
                     User u = new User(doc);
+
+                    setCurrentUserInstance(u);
 
                     SharedPreferences sharedPreferences = activity.getSharedPreferences(
                             Constants.ETES_LIB_PREFERENCES,
@@ -174,6 +268,7 @@ public class FirestoreClass {
         return DatesInStringComparator.areDatesTwoHourDifference(currentTime, lastFetched);
     }
 
+    private static boolean isUserInTheList;
     public static void updateUserProfile(Activity a, HashMap<String, Object> userHM){
         mFirebaseFirestore.collection(Constants.USERS).document(getCurrentUserID())
                 .update(userHM)
@@ -186,8 +281,6 @@ public class FirestoreClass {
                     if(a instanceof EditProfileActivity) {
                         ((EditProfileActivity) a).hideProgressDialog();
                     }
-
-                    Log.e(a.getLocalClassName(), "Error while updating the user details", err);
                 });
     }
 
@@ -317,7 +410,7 @@ public class FirestoreClass {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
-                            if(task.getResult() != null) {
+                            if(!task.getResult().isEmpty()) {
                                 ArrayList<Review> reviewsList = new ArrayList<>();
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                     reviewsList.add(new Review(documentSnapshot));
@@ -362,5 +455,90 @@ public class FirestoreClass {
                 }
             }
         });
+    }
+
+    public static void assignNotificationTokenToUser(String token) {
+        User tempUser = getCurrentUserInstance();
+        HashMap<String, String> notificationTokenHashMap = new HashMap<>();
+        notificationTokenHashMap.put("fcmToken", token);
+        mFirebaseFirestore.collection(Constants.USERS)
+                .document(tempUser.getId())
+                .set(notificationTokenHashMap, SetOptions.merge())
+                .addOnSuccessListener(s -> {
+                    Log.d("TOKEN_REG", "Successfully registered a new token to a user!");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("TOKEN_REG", "Couldn't register a new token to a user!", e);
+                });
+    }
+
+    public static void getUserSearchList(FullTextSearchActivity fullTextSearchActivity) {
+        mFirebaseFirestore.collection(Constants.USERS)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult() != null) {
+                                ArrayList<User> usersList = new ArrayList<>();
+                                for(QueryDocumentSnapshot docSnap : task.getResult()) {
+                                    User tempUser = new User(docSnap);
+                                    if(tempUser.getId().compareTo(getCurrentUserID()) != 0) {
+                                        usersList.add(tempUser);
+                                    }
+                                }
+
+                                fullTextSearchActivity.gotUserListSuccessfully(usersList);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public static void getSearchBookSelected(FullTextSearchActivity activity, String uid) {
+        mFirebaseFirestore.collection("books")
+                .document(uid)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Book searchedBook = new Book(documentSnapshot);
+                        activity.gotSelectedBookSuccessfully(searchedBook);
+                    }
+                });
+    }
+
+    public static void getSpecificUserReviews(UserProfileActivity activity, String id) {
+        mFirebaseFirestore.collection(Constants.REVIEWS)
+                .whereEqualTo("userId", id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult() != null) {
+                                ArrayList<Review> userReviews = new ArrayList<>();
+                                for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    Review tempRev = new Review(documentSnapshot);
+                                    userReviews.add(tempRev);
+                                }
+                                activity.gotUsersReviewsSuccessfully(userReviews);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public static void getUserProfileReviewBook(UserProfileActivity activity, String bookId) {
+        mFirebaseFirestore.collection("books")
+                .document(bookId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Book tempBook = new Book(documentSnapshot);
+                        activity.gotUserReviewBookSuccessfully(tempBook);
+                    }
+                });
     }
 }

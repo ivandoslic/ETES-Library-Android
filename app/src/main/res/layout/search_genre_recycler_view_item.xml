@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginHorizontal="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/black_high_emphasis"
+        android:id="@+id/genreItemRootLayout">
+
+        <ImageView
+            android:id="@+id/genreItemBookCoverIV"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-30dp"
+            android:rotation="25"/>
+
+        <com.example.eteslibauthproto.utils.ETESLibTextView
+            android:id="@+id/genreItemGenreTV"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            tools:text="Genre"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            app:font_name="josefinSansSemiBold" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -28,12 +29,17 @@ import com.example.eteslibauthproto.firestore.FirestoreClass;
 import com.example.eteslibauthproto.models.Book;
 import com.example.eteslibauthproto.models.User;
 import com.example.eteslibauthproto.ui.activities.BookPreviewActivity;
+import com.example.eteslibauthproto.ui.activities.SearchActivity;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.GlideLoader;
 import com.example.eteslibauthproto.utils.adapters.BooksHorizontalListAdapter;
 import com.example.eteslibauthproto.utils.localdatabase.AppDataManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class HomeFragment extends BaseFragment {
 
@@ -58,13 +64,17 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-
-
         View root = binding.getRoot();
         profileImageView = binding.profileImageViewHome;
         usernameText = binding.usernameLabelHome;
         booksRecyclerView = binding.booksRecyclerView;
         specificAuthorBooksRecyclerView = binding.specificAuthorBooksRecyclerView;
+        CardView search = binding.homeFragmentSearchCard;
+
+        search.setOnClickListener(v -> {
+                Intent i = new Intent(getContext(), SearchActivity.class);
+                startActivity(i);
+        });
 
         return root;
     }

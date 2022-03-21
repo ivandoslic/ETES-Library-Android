@@ -4,6 +4,7 @@
     package="com.example.eteslibauthproto">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EtesLibAuthProto">
+        <activity
+            android:name=".ui.activities.UserProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activities.FullTextSearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.activities.SearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.fragments.SearchActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.activities.CreateReviewActivity"
             android:exported="true"
@@ -68,6 +81,14 @@
             android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <service
+            android:name=".utils.NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

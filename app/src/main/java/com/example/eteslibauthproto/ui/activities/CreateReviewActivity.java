@@ -116,7 +116,11 @@ public class CreateReviewActivity extends BaseActivity {
     private void validateInfo() {
         String text = String.valueOf(reviewTextArea.getText());
 
-        if(bookRating < 0 || bookRating > 5) {
+        if(editingReview && bookRating <= 0) {
+            bookRating = oldReview.getRating();
+        }
+
+        if(bookRating <= 0 || bookRating > 5) {
             reviewFailedPushToServer(Constants.INVALID_RATING_FLOAT);
             return;
         }

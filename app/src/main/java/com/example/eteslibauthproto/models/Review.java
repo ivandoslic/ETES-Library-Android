@@ -9,6 +9,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Objects;
 
+import javax.annotation.Nullable;
+
+@Nullable
 public class Review implements Parcelable {
     private String reviewId;
     private String userId;

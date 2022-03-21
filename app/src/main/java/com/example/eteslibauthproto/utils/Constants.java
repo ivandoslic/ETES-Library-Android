@@ -67,4 +67,8 @@ public final class Constants {
     public static final int EMPTY_RATING_TEXT = 101;
     public static final int REVIEW_UPLOAD_FAILED = 102;
     public static final int REVIEW_UPLOAD_SUCCEEDED = 103;
+
+    // Notifications
+
+    public static final String NOTIFICATION_CHANNEL_ID = "HEADS_UP_NOTIFICATION";
 }

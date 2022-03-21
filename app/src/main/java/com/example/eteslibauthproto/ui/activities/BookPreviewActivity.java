@@ -66,9 +66,12 @@ public class BookPreviewActivity extends BaseActivity {
 
         Intent i = getIntent();
         currentBook = i.getParcelableExtra(Constants.BOOK_PREVIEW_INTENT_NAME);
-        currentUser = i.getParcelableExtra(Constants.EXTRA_USER_DETAILS);
+        // currentUser = i.getParcelableExtra(Constants.EXTRA_USER_DETAILS);
+        // for some reason sometimes user object is null and app cannot read his ID so I'll make only one instance
+        // of user object for further code so it is public and static so it is accessible through out a whole app
+        currentUser = FirestoreClass.getCurrentUserInstance();
 
-        if(currentBook == null) {
+        if(currentBook == null || currentUser == null) {
             // TODO: make snack message in Home fragment that error has occurred
             finish();
         }
@@ -153,9 +156,11 @@ public class BookPreviewActivity extends BaseActivity {
     }
 
     private boolean userAlreadyReviewed() {
-        for(Review review : currentReviews) {
-            if((review.getUserId()).compareTo(currentUser.getId()) == 0)
-                return true;
+        if(currentReviews != null && currentReviews.size() > 0) {
+            for(Review review : currentReviews) {
+                if((review.getUserId()).compareTo(currentUser.getId()) == 0)
+                    return true;
+            }
         }
 
         return false;
@@ -201,7 +206,7 @@ public class BookPreviewActivity extends BaseActivity {
 
     private void updateUI() {
 
-        reviewsRecyclerView.invalidate();
+        reviewsRecyclerView.invalidate(); // POTENTIAL ERROR
 
         if(userAlreadyReviewed()) {
             extendedFloatingActionButton.setText("EDIT REVIEW");
@@ -209,7 +214,7 @@ public class BookPreviewActivity extends BaseActivity {
             this.hasReviewed = true;
             if(oldReview == null)
                 oldReview = getOldReview();
-        }
+        } // TODO : Maybe create a function for this
 
         ReviewsVerticalListAdapter reviewsVerticalListAdapter = new ReviewsVerticalListAdapter(this, currentReviews);
 
@@ -244,9 +249,10 @@ public class BookPreviewActivity extends BaseActivity {
     }
 
     public void couldNotGetReviews() {
-
+        showErrorSnackBar("Couldn't get reviews from the server", true);
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -259,6 +265,7 @@ public class BookPreviewActivity extends BaseActivity {
             }
         }
     }
+    */
 
     private void reviewFailedToUpload() {
         showErrorSnackBar("Error occurred while uploading your review!!", true);
@@ -266,6 +273,10 @@ public class BookPreviewActivity extends BaseActivity {
 
     private void reviewUploadedSuccessfully(Review newReview) {
         showErrorSnackBar("Your review was uploaded successfully!", false);
+
+        if (currentReviews == null) {
+            currentReviews = new ArrayList<>(); // Potential fix
+        }
 
         currentReviews.add(newReview);
         updateUI();

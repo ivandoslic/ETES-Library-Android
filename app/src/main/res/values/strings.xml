@@ -50,4 +50,7 @@
     <string name="see_all_reviews_label">See all\nreviews</string>
     <string name="see_all_achievements_label">See all\nachievements</string>
     <string name="see_all_books_label">See all\nbooks</string>
+    <string name="search_label">Search</string>
+    <string name="search_books_input_hint">Search books</string>
+    <string name="users_string">Users</string>
 </resources>

@@ -51,11 +51,6 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        /* TODO: Get user object to be able to load the public profile, if possible get user object
-         *       in DashboardActivity and then pass it to all fragments for easier implementation
-         *       and making less requests to server
-         */
-
         ImageButton settings = binding.profileSettingsButton;
         profileImageView = binding.usersProfProfileImageImage;
         usernameTextView = binding.profileUsername;
@@ -63,10 +58,6 @@ public class ProfileFragment extends Fragment {
         reviewTextTextView = binding.profileReviewTextTV;
         reviewRatingBar = binding.profileReviewRatingBar;
         numberOfReviewsTextView = binding.profileNoOfReviewsTV;
-
-        /* TODO: Check if user is looking at his profile or other profile and allow or disallow him
-         *       to access settings accordingly
-         */
 
         settings.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), SettingsActivity.class);
