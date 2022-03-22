@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,7 @@ public class EditProfileActivity extends BaseActivity {
 
     private Uri selectedImageUri;
     private String userProfileImgURL;
+    private Bitmap savedImageCropped;
     private boolean imageChanged = false;
 
     @Override
@@ -168,11 +170,12 @@ public class EditProfileActivity extends BaseActivity {
                 if(data != null) {
                     try {
                         selectedImageUri = data.getData();
-                        // profileImage.setImageURI(selectedImageUri);
-
+                        Bundle extras = data.getExtras();
+                        Bitmap selectedBitMap = extras.getParcelable("data");
                         GlideLoader gLoader = new GlideLoader(this);
-                        gLoader.loadUserPicture(selectedImageUri, profileImage);
+                        gLoader.loadUserPicture(selectedBitMap, profileImage);
                         imageChanged = true;
+                        savedImageCropped = selectedBitMap;
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast.makeText(this, getResources().getString(R.string.image_selection_failed), Toast.LENGTH_SHORT).show();
@@ -202,8 +205,8 @@ public class EditProfileActivity extends BaseActivity {
         if(validateProfileDetails()) {
             showProgressDialog("Please wait...");
 
-            if(selectedImageUri != null && imageChanged) {
-                FirestoreClass.uploadImageToCloud(this, selectedImageUri);
+            if(savedImageCropped != null && imageChanged) {
+                FirestoreClass.uploadImageToCloud(this, savedImageCropped);
             } else {
                 updateProfileDetails();
             }

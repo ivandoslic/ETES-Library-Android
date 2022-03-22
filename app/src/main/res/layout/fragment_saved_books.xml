@@ -6,24 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.SavedBooksFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
+    <com.example.eteslibauthproto.utils.ETESLibTextView
+        android:id="@+id/fragmentSavedBooksTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Saved books"
+        android:textColor="@color/black_high_emphasis"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="?actionBarSize"
+        android:textSize="26sp" />
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/noSavedBooksInSavedBooks"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@color/black"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:visibility="gone"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/fragmentSavedBooksTitle"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <ImageView
+            android:id="@+id/noBookSavedImageInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/save_a_book_instruction"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <com.example.eteslibauthproto.utils.ETESLibTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/noBookSavedImageInstruction"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textAlignment="center"
+            android:text="@string/how_to_save_a_book"
+            android:textColor="@color/black_high_emphasis"
+            android:textSize="18sp"
+            android:paddingHorizontal="25dp"
+            android:layout_marginTop="15dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/savedBooksRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="0dp"
+        android:paddingBottom="?actionBarSize"
+        app:layout_constraintTop_toBottomOf="@id/fragmentSavedBooksTitle"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

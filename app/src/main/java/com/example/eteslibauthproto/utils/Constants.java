@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 public final class Constants {
     public static final String BOOK_FOR_CREATING_REVIEW = "book_for_creating_review";
     public static final String OLD_USER_REVIEW = "users_old_review";
+    public static final String SAVED_BOOKS = "saved_books";
 
     private Constants() {}
 
@@ -26,7 +28,7 @@ public final class Constants {
     public static final String MALE = "male";
     public static final String FEMALE = "female";
 
-    public static final String USER_PROFILE_IMAGE = "User_Profile_Image";
+    public static final String USER_PROFILE_IMAGE = "profileImage";
 
     public static final int READ_STORAGE_PERMISSION_CODE = 2;
     public static final int PICK_IMAGE_REQUEST_CODE = 3;
@@ -37,10 +39,14 @@ public final class Constants {
 
     public static void showImageChooser(Activity a) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        // TODO: Force user to crop image to needed resolution for profile/banner/etc.
-
+        galleryIntent.putExtra("crop", "true");
+        galleryIntent.putExtra("aspectX", 1);
+        galleryIntent.putExtra("aspectY", 1);
+        galleryIntent.putExtra("outputX", 250);
+        galleryIntent.putExtra("outputY", 250);
+        galleryIntent.putExtra("return-data", true);
         a.startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST_CODE);
+        Log.d("fromCropping", "onActivityResult: A LEAST I KNOW IT STARTS AFR");
     }
 
     public static String getFileExtension(Activity a, Uri uri) {

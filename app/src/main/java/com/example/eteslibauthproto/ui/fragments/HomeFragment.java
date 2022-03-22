@@ -30,6 +30,7 @@ import com.example.eteslibauthproto.models.Book;
 import com.example.eteslibauthproto.models.User;
 import com.example.eteslibauthproto.ui.activities.BookPreviewActivity;
 import com.example.eteslibauthproto.ui.activities.SearchActivity;
+import com.example.eteslibauthproto.ui.activities.SettingsActivity;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.GlideLoader;
 import com.example.eteslibauthproto.utils.adapters.BooksHorizontalListAdapter;
@@ -74,6 +75,11 @@ public class HomeFragment extends BaseFragment {
         search.setOnClickListener(v -> {
                 Intent i = new Intent(getContext(), SearchActivity.class);
                 startActivity(i);
+        });
+
+        binding.profileImageCardHome.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(i);
         });
 
         return root;

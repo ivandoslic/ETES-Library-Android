@@ -3,6 +3,7 @@ package com.example.eteslibauthproto.firestore;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 
@@ -26,6 +27,7 @@ import com.example.eteslibauthproto.ui.activities.UserProfileActivity;
 import com.example.eteslibauthproto.ui.fragments.BaseFragment;
 import com.example.eteslibauthproto.ui.fragments.HomeFragment;
 import com.example.eteslibauthproto.ui.fragments.ProfileFragment;
+import com.example.eteslibauthproto.ui.fragments.SavedBooksFragment;
 import com.example.eteslibauthproto.utils.Constants;
 import com.example.eteslibauthproto.utils.localdatabase.AppDataManager;
 import com.example.eteslibauthproto.utils.misc.DatesInStringComparator;
@@ -47,6 +49,7 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Document;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -294,14 +297,18 @@ public class FirestoreClass {
         editor.apply();
     }
 
-    public static void uploadImageToCloud(Activity a, Uri uri) {
+    public static void uploadImageToCloud(Activity a, Bitmap image) {
         StorageReference reference = FirebaseStorage.getInstance()
                 .getReference()
                 .child(
-                        Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "." + Constants.getFileExtension(a, uri)
+                        Constants.USER_PROFILE_IMAGE + currentUser.getId() + ".jpg"
                 );
 
-        reference.putFile(uri).addOnSuccessListener(taskSnapshot -> {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] data = byteArrayOutputStream.toByteArray();
+
+        reference.putBytes(data).addOnSuccessListener(taskSnapshot -> {
 
             Log.e("Firebase Image URL", taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
 
@@ -538,6 +545,19 @@ public class FirestoreClass {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Book tempBook = new Book(documentSnapshot);
                         activity.gotUserReviewBookSuccessfully(tempBook);
+                    }
+                });
+    }
+
+    public static void getSavedBook(SavedBooksFragment savedBooksFragment, String saveId) {
+        mFirebaseFirestore.collection("books")
+                .document(saveId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Book savedBook = new Book(documentSnapshot);
+                        savedBooksFragment.addToSavedBooksList(savedBook);
                     }
                 });
     }

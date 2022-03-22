@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -107,6 +108,8 @@ public class BookPreviewActivity extends BaseActivity {
         scrollViewConstraintLayout = (ConstraintLayout) findViewById(R.id.bookPreviewScrollViewConstraintLayout);
         extendedFloatingActionButton = (ExtendedFloatingActionButton) findViewById(R.id.bookPreviewExtendedFAB);
 
+        checkIfBookIsSaved();
+
         extendedFloatingActionButton.hide();
 
         extendedFloatingActionButton.setOnClickListener(this.startCreateReviewActivity);
@@ -122,8 +125,10 @@ public class BookPreviewActivity extends BaseActivity {
                     bookSaved = !bookSaved;
                     item.setIcon(bookSaved ? R.drawable.ic_baseline_bookmark_24 : R.drawable.ic_baseline_bookmark_border_32);
                     if(bookSaved) {
+                        saveThisBook();
                         showErrorSnackBar("Added to saved books!", false);
                     } else {
+                        removeThisBookFromSaved();
                         showErrorSnackBar("Removed from saved books!", true);
                     }
                 }
@@ -145,6 +150,49 @@ public class BookPreviewActivity extends BaseActivity {
         showReviewsLinearLayout.setOnClickListener(v -> {
             loadReviews();
         });
+    }
+
+    private void checkIfBookIsSaved() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SAVED_BOOKS, MODE_PRIVATE);
+        String listOfSavedString = sharedPreferences.getString("saved", null);
+        String[] booksIds = listOfSavedString.split("\\|");
+        for(int i = 1; i < booksIds.length; i++) {
+            if(booksIds[i].compareTo(currentBook.getId()) == 0) {
+                bookSaved = true;
+                topAppBar.getMenu().getItem(0).setIcon(R.drawable.ic_baseline_bookmark_24);
+                return;
+            }
+        }
+    }
+
+    private void saveThisBook() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SAVED_BOOKS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String listOfSavedString = sharedPreferences.getString("saved", null);
+        listOfSavedString += '|' + currentBook.getId();
+
+        editor.putString("saved", listOfSavedString);
+        editor.apply();
+    }
+
+    private void removeThisBookFromSaved() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SAVED_BOOKS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String listOfSavedString = sharedPreferences.getString("saved", null);
+
+        String[] booksIds = listOfSavedString.split("\\|");
+        StringBuilder tempNewList = new StringBuilder();
+
+        for(int i = 1; i < booksIds.length; i++) {
+            if(booksIds[i].compareTo(currentBook.getId()) != 0) {
+                tempNewList.append('|').append(booksIds[i]);
+            }
+        }
+
+        editor.putString("saved", tempNewList.toString());
+        editor.apply();
     }
 
     private void loadReviews() {

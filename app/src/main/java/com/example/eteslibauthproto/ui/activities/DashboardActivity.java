@@ -54,9 +54,7 @@ public class DashboardActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        while(navController.getCurrentDestination().getId() != R.id.navigation_home) {
-                            navController.navigateUp();
-                        }
+                        navController.popBackStack(R.id.navigation_home, false);
                         return true;
                     case R.id.navigation_profile:
                         navController.navigate(R.id.navigation_profile);
@@ -75,11 +73,8 @@ public class DashboardActivity extends BaseActivity {
         if(navController.getCurrentDestination().getId() == R.id.navigation_home) {
             doubleBackToExit();
         } else {
-            while(navController.getCurrentDestination().getId() != R.id.navigation_home) {
-                navController.navigateUp();
-                bottomNavView.getMenu().getItem(0).setChecked(true);
-                navController.popBackStack();
-            }
+            navController.popBackStack(R.id.navigation_home, false);
+            bottomNavView.getMenu().getItem(0).setChecked(true);
         }
     }
 }

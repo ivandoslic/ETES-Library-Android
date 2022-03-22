@@ -54,16 +54,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_baseline_notifications_none_24"
-                app:layout_constraintRight_toLeftOf="@+id/profileImageCardHome"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/atomic_tangerine" />
-
             <com.example.eteslibauthproto.utils.ETESLibTextView
                 android:id="@+id/whatAreYouLookingForTodayHomeFragmentQuestion"
                 android:layout_width="wrap_content"
