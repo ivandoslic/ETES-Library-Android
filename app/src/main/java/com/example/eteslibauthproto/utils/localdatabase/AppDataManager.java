@@ -37,8 +37,6 @@ public class AppDataManager {
         SharedPreferences sharedPreferences = currentContext.getSharedPreferences(Constants.ETES_LIB_PREFERENCES, Context.MODE_PRIVATE);
         String lastFetched = sharedPreferences.getString(Constants.USER_LAST_LOGGED_TIME, "There is a problem...");
         String currentTime = Calendar.getInstance().getTime().toString();
-
-        FirestoreClass.getTenBooks(this); // Don't always do this, first check if you actually need to make a request
     }
 
     public void setLoadedBooks(ArrayList<DocumentSnapshot> bookDocs) {
@@ -49,7 +47,7 @@ public class AppDataManager {
         });
 
         if(currentFragment instanceof HomeFragment) {
-            ((HomeFragment) currentFragment).setCurrentlyLoadedBookList(tempBookList);
+
         }
     }
 

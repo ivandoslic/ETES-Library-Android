@@ -17,10 +17,7 @@
             app:title="Settings"
             app:menu="@menu/settings_top_bar"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
-            app:navigationIconTint="@color/charcoal"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary" />
-
-        <!-- TODO: Make title a custom TextView with JS font and align it to center of action bar !-->
+            app:navigationIconTint="@color/white_high_emphasis" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -62,7 +59,7 @@
                 android:text="{username}"
                 android:layout_marginTop="15dp"
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white_high_emphasis"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/usersSettingsProfileImageCard" /> <!-- Username Text - id: settingsUserNameTV !-->
@@ -73,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="{email@address.com}"
                 android:textSize="18sp"
+                android:textColor="@color/white_medium_emphasis"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/settingsUserNameTV"
@@ -82,7 +80,7 @@
                 android:id="@+id/settingsEditProfileButtonCV"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                app:cardBackgroundColor="@color/gunmetal"
+                app:cardBackgroundColor="@color/atomic_tangerine"
                 app:cardCornerRadius="25dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Edit Profile"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black_high_emphasis"
                         android:textSize="20sp"
                         android:layout_marginStart="15dp"
                         android:layout_marginBottom="1dp"/>
@@ -108,7 +106,8 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="7dp"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        app:tint="@color/black_high_emphasis" />
 
                 </LinearLayout>
 
@@ -120,7 +119,7 @@
                 android:layout_height="@dimen/settings_divider_height"
                 app:layout_constraintTop_toBottomOf="@id/settingsEditProfileButtonCV"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/divider_background_color"
+                android:backgroundTint="@color/transparent"
                 app:cardElevation="0dp"
                 >
 
@@ -128,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/content_divider_label"
-                    android:textColor="@color/divider_text_color"
+                    android:textColor="@color/white_medium_emphasis"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp" />
 
@@ -147,7 +146,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_card_height"
-                    app:cardBackgroundColor="@color/settings_cards_background_color"
+                    app:cardBackgroundColor="@color/black_medium_emphasis"
                     app:cardCornerRadius="@dimen/settings_card_corner_radius"
                     app:cardElevation="0dp" >
 
@@ -169,7 +168,7 @@
                             android:text="@string/settings_favorites_label"
                             android:textSize="@dimen/settings_card_text_size"
                             android:layout_marginStart="@dimen/settings_card_label_margin_from_icon"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white_high_emphasis" />
 
                         <RelativeLayout
                             android:layout_width="fill_parent"
@@ -204,7 +203,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_card_height"
-                    app:cardBackgroundColor="@color/settings_cards_background_color"
+                    app:cardBackgroundColor="@color/black_medium_emphasis"
                     app:cardCornerRadius="@dimen/settings_card_corner_radius"
                     app:cardElevation="0dp" >
 
@@ -218,7 +217,8 @@
                         <ImageView
                             android:layout_width="@dimen/settings_card_icon_dim"
                             android:layout_height="@dimen/settings_card_icon_dim"
-                            android:src="@drawable/ic_baseline_cloud_download_24" />
+                            android:src="@drawable/ic_baseline_cloud_download_24"
+                            app:tint="@color/deep_champagne" />
 
                         <com.example.eteslibauthproto.utils.ETESLibTextView
                             android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
                             android:text="@string/settings_downloads_label"
                             android:textSize="@dimen/settings_card_text_size"
                             android:layout_marginStart="@dimen/settings_card_label_margin_from_icon"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white_high_emphasis" />
 
                         <RelativeLayout
                             android:layout_width="fill_parent"
@@ -254,7 +254,7 @@
                 android:layout_height="@dimen/settings_divider_height"
                 app:layout_constraintTop_toBottomOf="@id/settingsDownloadsCard"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/divider_background_color"
+                android:backgroundTint="@color/transparent"
                 app:cardElevation="0dp"
                 >
 
@@ -262,7 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/preferences_divider_label"
-                    android:textColor="@color/divider_text_color"
+                    android:textColor="@color/white_medium_emphasis"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp" />
 
@@ -281,7 +281,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_card_height"
-                    app:cardBackgroundColor="@color/settings_cards_background_color"
+                    app:cardBackgroundColor="@color/black_medium_emphasis"
                     app:cardCornerRadius="@dimen/settings_card_corner_radius"
                     app:cardElevation="0dp" >
 
@@ -295,7 +295,8 @@
                         <ImageView
                             android:layout_width="@dimen/settings_card_icon_dim"
                             android:layout_height="@dimen/settings_card_icon_dim"
-                            android:src="@drawable/ic_baseline_nights_stay_24" />
+                            android:src="@drawable/ic_baseline_nights_stay_24"
+                            app:tint="@color/atomic_tangerine" />
 
                         <com.example.eteslibauthproto.utils.ETESLibTextView
                             android:layout_width="wrap_content"
@@ -303,7 +304,7 @@
                             android:text="@string/settings_night_mode_label"
                             android:textSize="@dimen/settings_card_text_size"
                             android:layout_marginStart="@dimen/settings_card_label_margin_from_icon"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white_high_emphasis" />
 
                         <RelativeLayout
                             android:layout_width="fill_parent"
@@ -314,7 +315,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
-                                android:checked="false"
+                                android:checked="true"
                                 android:theme="@style/Widget.App.Switch" />
 
                         </RelativeLayout>
@@ -338,7 +339,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/settings_card_height"
-                    app:cardBackgroundColor="@color/settings_cards_background_color"
+                    app:cardBackgroundColor="@color/black_medium_emphasis"
                     app:cardCornerRadius="@dimen/settings_card_corner_radius"
                     app:cardElevation="0dp" >
 
@@ -352,7 +353,8 @@
                         <ImageView
                             android:layout_width="@dimen/settings_card_icon_dim"
                             android:layout_height="@dimen/settings_card_icon_dim"
-                            android:src="@drawable/ic_baseline_notifications_active_24" />
+                            android:src="@drawable/ic_baseline_notifications_active_24"
+                            app:tint="@color/brown_for_tangerine" />
 
                         <com.example.eteslibauthproto.utils.ETESLibTextView
                             android:layout_width="wrap_content"
@@ -360,7 +362,7 @@
                             android:text="@string/settings_receive_notifications_label"
                             android:textSize="@dimen/settings_card_text_size"
                             android:layout_marginStart="@dimen/settings_card_label_margin_from_icon"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white_high_emphasis" />
 
                         <RelativeLayout
                             android:layout_width="fill_parent"

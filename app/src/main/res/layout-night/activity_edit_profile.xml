@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.EditProfileActivity">
+    tools:context=".ui.activities.EditProfileActivity"
+    android:background="@color/black">
 
     <ImageView
         android:id="@+id/profileEditBanner"
@@ -20,12 +21,12 @@
         android:id="@+id/backgroundEditProfWhitePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
         android:src="@drawable/white_panel_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/black" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/usersEditProfileImageCard"
@@ -50,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_baseline_add_a_photo_24"
-            android:backgroundTint="@color/charcoal"
+            android:backgroundTint="@color/atomic_tangerine"
             android:elevation="12dp"
             android:layout_gravity="center"/>
 
@@ -61,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_arrow_back_ios_24"
-        android:backgroundTint="@color/charcoal"
+        android:backgroundTint="@color/white_high_emphasis"
         app:layout_constraintBottom_toBottomOf="@+id/usersEditProfileImageCard"
         app:layout_constraintEnd_toStartOf="@+id/usersEditProfileImageCard"
         app:layout_constraintHorizontal_bias="0.116"
@@ -72,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_baseline_check_24"
-        android:backgroundTint="@color/charcoal"
+        android:backgroundTint="@color/white_high_emphasis"
         app:layout_constraintBottom_toBottomOf="@+id/usersEditProfileImageCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.882"

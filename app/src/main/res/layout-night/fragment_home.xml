@@ -26,7 +26,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="35dp"
                 android:text="@string/hi_message_home_fragment"
-                android:textColor="@color/gunmetal"
+                android:textColor="@color/white_high_emphasis"
                 android:textSize="24sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="35dp"
                 android:text="@string/username_placeholder"
-                android:textColor="@color/gunmetal"
+                android:textColor="@color/white_high_emphasis"
                 android:textSize="24sp"
                 app:font_name="josefinSansSemiBold"
                 app:layout_constraintLeft_toRightOf="@+id/hiMessageHome"
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/what_are_you_looking_for_today_home_fragment"
-                android:textColor="@color/gunmetal"
+                android:textColor="@color/white_medium_emphasis"
                 android:textSize="11sp"
                 app:font_name="josefinSansLight"
                 app:layout_constraintLeft_toLeftOf="@+id/hiMessageHome"
@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/whatAreYouLookingForTodayHomeFragmentQuestion"
                 android:layout_marginTop="20dp"
                 app:strokeWidth="2dp"
-                app:strokeColor="@color/gunmetal"
+                app:strokeColor="@color/white_high_emphasis"
                 android:layout_marginHorizontal="20dp">
                 <LinearLayout
                     android:id="@+id/homeFragmentSearchCardLL"
@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:text="Search"
                         android:layout_marginStart="20dp"
-                        android:textColor="@color/gunmetal"
+                        android:textColor="@color/white_high_emphasis"
                         />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -109,7 +109,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingBottom="15dp"
                 android:textSize="32sp"
-                android:textColor="@color/gunmetal"
+                android:textColor="@color/white_high_emphasis"
                 app:font_name="josefinSansSemiBold"
                 />
 

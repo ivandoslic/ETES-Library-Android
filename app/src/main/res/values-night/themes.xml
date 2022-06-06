@@ -15,4 +15,153 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
+
+    <style name="Theme.EtesLibAuthProto.EditProfile" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white_high_emphasis</item>
+        <item name="colorPrimaryVariant">@color/white_high_emphasis</item>
+        <item name="colorOnPrimary">@color/white_high_emphasis</item>
+
+        <item name="android:navigationBarColor">@color/black</item>
+
+        <item name="spinnerStyle">@android:style/Widget.Material.Spinner.Underlined</item>
+
+        <item name="colorOnSurface">@color/white_high_emphasis</item>
+
+        <item name="colorSecondary">@color/white_high_emphasis</item>
+        <item name="colorSecondaryVariant">@color/white_high_emphasis</item>
+        <item name="colorOnSecondary">@color/white_high_emphasis</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black_medium_emphasis</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.EtesLibAuthProto.Dashboard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black_medium_emphasis</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="bottomNavigationStyle">@style/Widget.EtesLibAuthProto.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.EtesLibAuthProto.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.EtesLibAuthProto.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.EtesLibAuthProto.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/black_high_emphasis</item>
+        <item name="colorOnPrimary">@color/white_high_emphasis</item>
+    </style>
+
+    <style name="Theme.EtesLibAuthProto.BookPreview" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/black_high_emphasis</item>
+        <item name="colorPrimaryVariant">@color/black_high_emphasis</item>
+        <item name="colorOnPrimary">@color/white_high_emphasis</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">@color/black_high_emphasis</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.App.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
+
+    </style>
+
+    <style name="TextAppearance.App.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:fontFamily">@font/josefin_sans</item>
+    </style>
+
+    <style name="TextAppearance.App.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:fontFamily">@font/josefin_sans</item>
+    </style>
+
+    <style name="DarkProfileRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/white_50transparent</item>
+        <item name="colorControlActivated">@color/brown_for_tangerine</item>
+    </style>
+
+    <style name="Theme.EtesLibAuthProto.Settings" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="toolbarStyle">@style/Widget.EtesLibAuthProto.SettingsToolbar</item>
+        <item name="android:statusBarColor">@color/black_high_emphasis</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/black_high_emphasis</item>
+    </style>
+
+    <style name="Widget.EtesLibAuthProto.SettingsToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.EtesLibAuthProto.SettingsToolBar</item>
+        <item name="titleTextAppearance">@style/TextAppearance.App.Headline6</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.App.Subtitle1</item>
+    </style>
+
+    <style name="ThemeOverlay.EtesLibAuthProto.SettingsToolBar" parent="">
+        <item name="colorPrimary">@color/black_high_emphasis</item>
+        <item name="colorPrimaryVariant">@color/black_medium_emphasis</item>
+        <item name="colorOnPrimary">@color/white_high_emphasis</item>
+    </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorSecondary">@color/atomic_tangerine</item>
+    </style>
+
+    <style name="Theme.EtesLibAuthProto.FullTextSearch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="textInputStyle">@style/Widget.EtesLibAuthProto.TextInputLayoutFTS</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Widget.EtesLibAuthProto.FullTextSearch.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.EtesLibAuthProto.Chip</item>
+    </style>
+
+    <style name="ThemeOverlay.EtesLibAuthProto.Chip" parent="">
+        <item name="colorPrimary">@color/atomic_tangerine</item>
+        <item name="colorOnSurface">@color/white_high_emphasis</item>
+        <item name="colorSurface">@color/black_medium_emphasis</item>
+    </style>
+
+    <style name="Widget.EtesLibAuthProto.TextInputLayoutFTS" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.EtesLibAuthProto.TextInputLayoutFTS</item>
+        <item name="colorPrimary">@color/white_high_emphasis</item>
+        <item name="colorOnSurface">@color/white_medium_emphasis</item>
+        <item name="colorPrimaryVariant">@color/white_medium_emphasis</item>
+        <item name="android:colorFocusedHighlight">@color/white_medium_emphasis</item>
+        <item name="colorError">@color/color_snack_bar_error</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AppCompat.Caption</item>
+        <item name="boxStrokeColor">@color/white_high_emphasis</item>
+        <item name="editTextStyle">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
+        <item name="hintTextColor">@color/white_medium_emphasis</item>
+    </style>
+
+    <style name="ThemeOverlay.EtesLibAuthProto.TextInputLayoutFTS" parent="">
+        <item name="colorAccent">@color/white_medium_emphasis</item>
+        <item name="colorPrimary">@color/white_high_emphasis</item>
+        <item name="colorOnSurface">@color/white_medium_emphasis</item>
+        <item name="colorPrimaryVariant">@color/white_medium_emphasis</item>
+        <item name="android:colorFocusedHighlight">@color/white_medium_emphasis</item>
+        <item name="colorError">@color/color_snack_bar_error</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AppCompat.Caption</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
+        <item name="boxStrokeColor">@color/white_high_emphasis</item>
+    </style>
+
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/josefin_sans</item>
+        <item name="android:fontFamily">@font/josefin_sans</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
 </resources>

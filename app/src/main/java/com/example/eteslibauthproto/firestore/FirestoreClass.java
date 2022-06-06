@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.eteslibauthproto.models.Author;
 import com.example.eteslibauthproto.models.Book;
 import com.example.eteslibauthproto.models.BookSearchItem;
 import com.example.eteslibauthproto.models.Review;
@@ -331,7 +332,7 @@ public class FirestoreClass {
         });
     }
 
-    public static void getTenBooks(AppDataManager appDataManager) {
+    public static void getTenBooks(HomeFragment fragment) {
         Query query = mFirebaseFirestore.collection("books").limit(10);
         ArrayList<DocumentSnapshot> snaps = new ArrayList<>();
 
@@ -342,10 +343,7 @@ public class FirestoreClass {
                     snaps.add(queryDocumentSnapshots.getDocuments().get(i));
                 }
 
-                appDataManager.setLoadedBooks(snaps);
-
-                DocumentSnapshot lastVisible = queryDocumentSnapshots.getDocuments()
-                        .get(queryDocumentSnapshots.size() - 1);
+                fragment.gotTenBooks(snaps);
             }
         });
     }
@@ -558,6 +556,50 @@ public class FirestoreClass {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Book savedBook = new Book(documentSnapshot);
                         savedBooksFragment.addToSavedBooksList(savedBook);
+                    }
+                });
+    }
+
+    public static void getRandomAuthorBooks(HomeFragment fragment, String authorName) {
+        mFirebaseFirestore.collection("books")
+                .whereEqualTo("authorName", authorName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult() != null) {
+                                ArrayList<Book> booksResult = new ArrayList<>();
+                                for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    Book tempBook = new Book(documentSnapshot);
+                                    booksResult.add(tempBook);
+                                }
+
+                                fragment.generateRandomAuthorList(authorName, booksResult);
+                            }
+                        }
+                    }
+                });
+    }
+
+    public static void getRandomGenreBooks(HomeFragment fragment, String randomGenre) {
+        mFirebaseFirestore.collection("books")
+                .whereEqualTo("genre", randomGenre)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult() != null) {
+                                ArrayList<Book> booksOfGenre = new ArrayList<>();
+                                for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                    Book tempBook = new Book(documentSnapshot);
+                                    booksOfGenre.add(tempBook);
+                                }
+
+                                fragment.generateRandomGenreList(randomGenre, booksOfGenre);
+                            }
+                        }
                     }
                 });
     }

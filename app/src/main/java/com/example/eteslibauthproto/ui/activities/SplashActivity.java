@@ -28,7 +28,6 @@ public class SplashActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(() -> {
 
-            // TODO: Check if user is already logged in and then start Login/Dashboard activity accordingly
             if(mUser != null) {
                 FirestoreClass.getUserDetails(this);
             } else {

@@ -62,7 +62,7 @@
 
     <LinearLayout
         android:id="@+id/otherProfileInfoLL"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/otherProfileUsername"
@@ -75,31 +75,42 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_marginEnd="10dp"
-            android:gravity="center_horizontal">
+            android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_collections_bookmark_24"
-                app:tint="@color/gunmetal" />
-
-            <com.example.eteslibauthproto.utils.ETESLibTextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/books_read_label"
-                android:textColor="@color/gunmetal"
-                android:textSize="16sp"
-                app:font_name="josefinSansRegular" />
+                android:orientation="vertical"
+                android:layout_marginStart="25dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_collections_bookmark_24"
+                    app:tint="@color/gunmetal" />
+
+                <com.example.eteslibauthproto.utils.ETESLibTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/books_read_label"
+                    android:textColor="@color/gunmetal"
+                    android:textSize="16sp"
+                    app:font_name="josefinSansRegular" />
+
+            </LinearLayout>
 
             <com.example.eteslibauthproto.utils.ETESLibTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/num_value_placeholder"
                 android:textColor="@color/gunmetal"
-                android:textSize="20sp"
-                app:font_name="josefinSansRegular" />
+                android:textSize="28sp"
+                android:layout_marginStart="25dp"
+                app:font_name="josefinSansSemiBold"
+                />
 
         </LinearLayout>
 
@@ -107,23 +118,9 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_marginStart="10dp"
-            android:gravity="center_horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_star_24"
-                app:tint="@color/atomic_tangerine" />
-
-            <com.example.eteslibauthproto.utils.ETESLibTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reviews_label"
-                android:textColor="@color/gunmetal"
-                android:textSize="16sp"
-                app:font_name="josefinSansRegular" />
+            android:gravity="end|center_vertical">
 
             <com.example.eteslibauthproto.utils.ETESLibTextView
                 android:id="@+id/otherProfileNoOfReviewsTV"
@@ -131,8 +128,32 @@
                 android:layout_height="wrap_content"
                 android:text="@string/num_value_placeholder"
                 android:textColor="@color/gunmetal"
-                android:textSize="20sp"
-                app:font_name="josefinSansRegular" />
+                android:textSize="28sp"
+                android:layout_marginEnd="25dp"
+                app:font_name="josefinSansSemiBold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="25dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_baseline_star_24"
+                    app:tint="@color/atomic_tangerine" />
+
+                <com.example.eteslibauthproto.utils.ETESLibTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reviews_label"
+                    android:textColor="@color/gunmetal"
+                    android:textSize="16sp"
+                    app:font_name="josefinSansRegular" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -215,5 +236,87 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/otherProfileActionButtonSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/otherProfileCardView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_baseline_edit_review_24"
+                app:tint="@color/gunmetal"
+                android:layout_marginBottom="5dp"/>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all_reviews_label"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/gunmetal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_baseline_collections_bookmark_24"
+                app:tint="@color/gunmetal"
+                android:layout_marginBottom="5dp"/>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all_books_label"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/gunmetal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_baseline_star_24"
+                app:tint="@color/gunmetal"
+                android:layout_marginBottom="5dp"/>
+
+            <com.example.eteslibauthproto.utils.ETESLibTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all_achievements_label"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/gunmetal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

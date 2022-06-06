@@ -289,8 +289,8 @@ public class BookPreviewActivity extends BaseActivity {
         ETESLibButton createFirstReviewButton = new ETESLibButton(this);
         createFirstReviewButton.setText("Create first review");
         createFirstReviewButton.setGravity(Gravity.CENTER);
-        createFirstReviewButton.setBackgroundColor(ContextCompat.getColor(this, R.color.gunmetal));
-        createFirstReviewButton.setTextColor(ContextCompat.getColor(this, R.color.white));
+        createFirstReviewButton.setBackgroundColor(ContextCompat.getColor(this, R.color.first_review_button_color));
+        createFirstReviewButton.setTextColor(ContextCompat.getColor(this, R.color.inverse_home_high_emphasis));
         createFirstReviewButton.setHeight(150);
         createFirstReviewButton.setOnClickListener(this.startCreateReviewActivity);
         reviewsLinearLayout.addView(createFirstReviewButton);

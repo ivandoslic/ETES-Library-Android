@@ -52,17 +52,17 @@ public class SettingsActivity extends BaseActivity {
         editProfileButton.setOnTouchListener((v, event) -> {
             switch (event.getAction()){
                 case MotionEvent.ACTION_DOWN:
-                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.charcoal_50transparent));
+                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.settings_button_pressed_color));
                     break;
                 case MotionEvent.ACTION_UP:
-                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.gunmetal));
+                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.first_review_button_color));
                     showErrorSnackBar("Starting edit profile activity", false);
                     Intent i = new Intent(SettingsActivity.this, EditProfileActivity.class);
                     i.putExtra(Constants.EXTRA_USER_DETAILS, mUser);
                     startActivity(i);
                     break;
                 case MotionEvent.ACTION_CANCEL:
-                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.gunmetal));
+                    editProfileButton.setCardBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.first_review_button_color));
                     break;
                 default:
                     break;

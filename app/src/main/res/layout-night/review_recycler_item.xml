@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@id/reviewUserProfileImageCV"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:textColor="@color/black_high_emphasis"
+        android:textColor="@color/white_high_emphasis"
         android:textSize="16sp" />
 
     <RatingBar
@@ -42,9 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:attr/ratingBarStyleSmall"
-        android:progressTint="@color/atomic_tangerine"
         app:layout_constraintTop_toBottomOf="@id/reviewUsernameTV"
         app:layout_constraintLeft_toRightOf="@id/reviewUserProfileImageCV"
+        android:progressTint="@color/atomic_tangerine"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp" />
 
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@id/reviewRatingBar"
         app:layout_constraintBottom_toBottomOf="@id/reviewRatingBar"
         android:layout_marginStart="5dp"
-        android:textColor="@color/black_high_emphasis"
+        android:textColor="@color/white_medium_emphasis"
         android:textSize="11sp"
         tools:text="0.0" />
 
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        app:tint="@color/black_high_emphasis"
+        app:tint="@color/white_medium_emphasis"
         android:contentDescription="@string/review_options_dropdown_menu_icon_desc" />
 
     <com.example.eteslibauthproto.utils.ETESLibTextView
@@ -80,7 +80,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/reviewUserProfileImageCV"
         tools:text="@string/lorem_ipsum_30"
-        android:textColor="@color/black_medium_emphasis"
+        android:textColor="@color/white_medium_emphasis"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

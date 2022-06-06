@@ -12,8 +12,6 @@ import com.example.eteslibauthproto.utils.ETESLibTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// TODO: If user logged in for the first time send him to AddFavoriteAuthorsActivity
-
 public class LoginActivity extends BaseActivity {
 
     private FirebaseUser mUser;
